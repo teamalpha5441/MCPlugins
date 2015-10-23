@@ -1,0 +1,35 @@
+level-cost: 3 # 3 Levels
+wand-item-id: 369 # Blaze Rod
+
+# Default: All animals are capturable
+allowed-egg-ids: [ 65, 93, 92, 98, 100, 96, 90, 91, 94, 95, 100, 101 ]
+
+# 50  Creeper
+# 58  Enderman
+# 67  Endermite
+# 56  Ghast
+# 66  Witch
+# 59  Cavespider
+# 61  Blaze
+# 62  Magmaslime
+# 60  Silverfish
+# 51  Skeleton
+# 55  Slime
+# 52  Spider
+# 54  Zombie
+# 57  Zombie Pigman
+
+# 65  Bat
+# 93  Chicken
+# 92  Cow
+# 98  Ocelot
+# 100 Horse
+# 96  Mooshroom
+# 90  Pig
+# 91  Sheep
+# 94  Squid
+# 95  Wolf
+# 100 Horse
+# 101 Rabbit
+
+# 120 Villager

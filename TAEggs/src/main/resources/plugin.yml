@@ -1,0 +1,9 @@
+name: ${project.name}
+author: teamalpha5441
+version: ${project.version}
+description: ${project.description}
+main: ${project.groupId}.${project.name}
+
+permissions:
+  taeggs.capture:
+    description: Allows you to capture mobs into spawner eggs
