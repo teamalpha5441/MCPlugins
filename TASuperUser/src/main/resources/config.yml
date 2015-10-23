@@ -1,0 +1,5 @@
+deop-on-join: true
+
+passwords:
+- hackme1
+- hackme2

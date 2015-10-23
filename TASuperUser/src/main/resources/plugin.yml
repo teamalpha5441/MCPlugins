@@ -1,0 +1,13 @@
+name: ${project.name}
+author: teamalpha5441
+version: ${project.version}
+description: ${project.description}
+main: ${project.groupId}.${project.name}
+
+commands:
+  su:
+    description: Login as an operator
+    usage: /<command> <password>
+  runas:
+    description: Run a command as another player
+    usage: '/<command> <player> <cmd> [arg] [arg] ...'
