@@ -1,0 +1,3 @@
+# Generate a bedrock block at 0/64/0
+# Also moves spawn from 0/64/0 to 0.5/64/0.5 (middle of the bedrock block)
+generate-bedrock-block: true
