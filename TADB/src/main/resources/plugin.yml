@@ -1,0 +1,20 @@
+name: ${project.name}
+author: teamalpha5441
+version: ${project.version}
+description: ${project.description}
+main: ${project.groupId}.${project.name}
+
+commands:
+  tadb:
+    usage: /<command> <reload|test>
+    description: Reloads TADB or tests the database connection
+    permission: tadb.admin
+  sql:
+    usage: /<command> <SQL>
+    description: Executes a SQL query
+    permission: tadb.admin
+
+permissions:
+  tadb.admin:
+    default: op
+    description: Gives you access to TADB commands
