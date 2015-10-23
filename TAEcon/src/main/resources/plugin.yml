@@ -1,0 +1,17 @@
+name: ${project.name}
+author: teamalpha5441
+version: ${project.version}
+description: ${project.description}
+main: ${project.groupId}.${project.name}
+
+commands:
+  money:
+    aliases: [ eco, econ, wallet, tokens ]
+    description: Economy command
+
+permissions:
+  taecon.pay:
+    description: Lets you pay a player
+  taecon.admin:
+    description: Lets you use admin commands
+    default: op
