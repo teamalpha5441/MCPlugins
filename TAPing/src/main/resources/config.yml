@@ -1,0 +1,9 @@
+motds:
+- 'Test MOTD 1&xSecond line here'
+- 'Test MOTD 2 in &4Color'
+- 'Test MOTD 3'
+
+icons:
+- 'server-icon1.png'
+- 'server-icon2.png'
+- 'server-icon3.png'
