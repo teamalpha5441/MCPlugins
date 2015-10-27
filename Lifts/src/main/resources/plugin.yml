@@ -1,0 +1,14 @@
+name: ${project.name}
+author: teamalpha5441
+version: ${project.version}
+description: ${project.description}
+main: ${project.groupId}.${project.name}
+
+permissions:
+  lifts.create:
+    description: Allows you to create lifts
+  lifts.use:
+    description: Allows you to use lifts
+  lifts.bypass:
+    description: Allows you to bypass any access restrictions
+    default: op
