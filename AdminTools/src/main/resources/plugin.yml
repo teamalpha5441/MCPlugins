@@ -1,0 +1,106 @@
+name: ${project.name}
+author: teamalpha5441
+version: ${project.version}
+description: ${project.description}
+main: ${project.groupId}.${project.name}
+
+commands:
+  drunk:
+    description: Makes a player drunk
+    usage: /<command> [player]
+    permission: admintools.commands.drunk
+  eat:
+    description: Feeds a player
+    usage: /<command> [player]
+    permission: admintools.commands.eat
+  enderchest:
+    description: Allows you to look into someones ender chest
+    usage: /<command> [player]
+    permission: admintools.commands.enderchest
+  explode:
+    description: Lets a player explode and die (even in creative mode)
+    usage: /<command> [player]
+    permission: admintools.commands.explode
+  fly:
+    description: Lets a player use fly mode
+    usage: /<command> [player]
+    permission: admintools.commands.fly
+  freeze:
+    description: Freezes a player with potion effects
+    usage: /<command> [player]
+    permission: admintools.commands.freeze
+  gc:
+    description: Executes the java garbage collector
+    usage: /<command>
+    permission: admintools.commands.gc
+  heal:
+    description: Heals a player
+    usage: /<command> [player]
+    permission: admintools.commands.heal
+  ignite:
+    description: Ignites a player
+    usage: /<command> [player]
+    permission: admintools.commands.ignite
+  inventory:
+    description: Allows you to look into someones inventory
+    usage: /<command> [player]
+    permission: admintools.commands.inventory
+  launch:
+    description: Launches a player into sky
+    usage: /<command> [player]
+    permission: admintools.commands.launch
+  poison:
+    description: Poisons a player
+    usage: /<command> [player]
+    permission: admintools.commands.poison
+  xreload:
+    description: Broadcasts a warning, saves all data and reloads the server
+    usage: /<command>
+    permission: bukkit.command.reload
+  xstop:
+    description: Broadcasts a warning and stops the server
+    usage: /<command>
+    permission: bukkit.command.stop
+    
+  hide:
+    description: Hides you from all players
+    usage: /<command>
+    permission: admintools.commands.hide
+  unhide:
+    description: Shows you to all players
+    usage: /<command>
+    permission: admintools.commands.hide
+
+permissions:
+  admintools.commands.drunk:
+    default: op
+  admintools.commands.eat:
+    default: op
+  admintools.commands.enderchest:
+    default: op
+  admintools.commands.explode:
+    default: op
+  admintools.commands.fly:
+    default: op
+  admintools.commands.freeze:
+    default: op
+  admintools.commands.gc:
+    default: op
+  admintools.commands.heal:
+    default: op
+  admintools.commands.ignite:
+    default: op
+  admintools.commands.inventory:
+    default: op
+  admintools.commands.launch:
+    default: op
+  admintools.commands.poison:
+    default: op
+  admintools.commands.hide:
+    default: op
+  admintools.commands.hide:
+    default: op
+  admintools.mechanics.open-iron-doors:
+    default: op
+  admintools.mechanics.create-colored-signs:
+    default: op
