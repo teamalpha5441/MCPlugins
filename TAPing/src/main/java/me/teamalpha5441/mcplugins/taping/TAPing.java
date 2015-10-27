@@ -52,8 +52,12 @@ public class TAPing extends JavaPlugin implements Listener {
 			for (String fileName : iconFileNames) {
 				File iconFile = new File(pluginDir, fileName);
 				if (iconFile.exists()) {
-					CachedServerIcon icon = IconHelper.loadIconFromFile(this, iconFile);
-					icons.add(icon);
+					try {
+						CachedServerIcon icon = getServer().loadServerIcon(iconFile);
+						icons.add(icon);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				} else {
 					getLogger().log(Level.SEVERE, "Icon file '" + fileName + "' not found");
 				}
