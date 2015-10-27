@@ -4,5 +4,4 @@ config:
     plural: 'Tokens'
   default_balance: 0
 
-accounts:
-  teamalpha5441: 1000
+accounts: []

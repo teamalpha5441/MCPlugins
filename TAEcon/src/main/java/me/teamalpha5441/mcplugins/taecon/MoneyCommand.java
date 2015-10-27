@@ -1,6 +1,7 @@
 package me.teamalpha5441.mcplugins.taecon;
 
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,15 +15,32 @@ public class MoneyCommand implements CommandExecutor {
 		this.base = base;
 	}
 	
+	@SuppressWarnings("deprecation")
+	private OfflinePlayer getPlayer(String playerName) {
+		return base.getServer().getOfflinePlayer(playerName);
+	}
+	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (args.length < 1 && sender instanceof Player) {
-			get(sender, ((Player)sender).getName());
+		if (args.length < 1) {
+			if (sender instanceof Player) {
+				get(sender, (Player)sender);
+			} else {
+				usage(sender);
+			}
 		} else if (args[0].equals("pay") && sender instanceof Player) {
 			if (args.length == 3) {
 				if (sender.hasPermission("taecon.pay")) {
 					int amount = parseInt(args[2]);
-					successMessage(sender, base.payPlayer(((Player)sender).getName(), args[1], amount));
+					OfflinePlayer paidPlayer = getPlayer(args[1]);
+					if (base.payPlayer((Player)sender, paidPlayer, amount)) {
+						sender.sendMessage(ChatColor.GREEN + "Successfully paid " + formatAmount(amount));
+						if (paidPlayer.isOnline()) {
+							((Player)paidPlayer).sendMessage(ChatColor.GREEN + "You received " + formatAmount(amount) + " from " + ChatColor.YELLOW + ((Player)sender).getDisplayName());
+						}
+					} else {
+						errorMessage(sender);
+					}
 				} else {
 					noPermMessage(sender);
 				}
@@ -32,7 +50,7 @@ public class MoneyCommand implements CommandExecutor {
 		} else if (args[0].equals("get")) {
 			if (args.length == 2) {
 				if (sender.hasPermission("taecon.admin")) {
-					get(sender, args[1]);
+					get(sender, getPlayer(args[1]));
 				} else {
 					noPermMessage(sender);
 				}
@@ -43,7 +61,11 @@ public class MoneyCommand implements CommandExecutor {
 			if (args.length == 3) {
 				if (sender.hasPermission("taecon.admin")) {
 					int amount = parseInt(args[2]);
-					successMessage(sender, base.setBalance(args[1], amount));
+					if (base.setBalance(getPlayer(args[1]), amount)) {
+						sender.sendMessage(ChatColor.GREEN + "Successfully set balance to " + formatAmount(amount));
+					} else {
+						errorMessage(sender);
+					}
 				} else {
 					noPermMessage(sender);
 				}
@@ -54,7 +76,11 @@ public class MoneyCommand implements CommandExecutor {
 			if (args.length == 3) {
 				if (sender.hasPermission("taecon.admin")) {
 					int amount = parseInt(args[2]);
-					successMessage(sender, base.addBalance(args[1], amount));
+					if (base.addBalance(getPlayer(args[1]), amount)) {
+						sender.sendMessage(ChatColor.GREEN + "Successfully raised balance by " + formatAmount(amount));
+					} else {
+						errorMessage(sender);
+					}
 				} else {
 					noPermMessage(sender);
 				}
@@ -65,7 +91,11 @@ public class MoneyCommand implements CommandExecutor {
 			if (args.length == 3) {
 				if (sender.hasPermission("taecon.admin")) {
 					int amount = parseInt(args[2]);
-					successMessage(sender, base.removeBalance(args[1], amount));
+					if (base.removeBalance(getPlayer(args[1]), amount)) {
+						sender.sendMessage(ChatColor.GREEN + "Successfully lowered balance by " + formatAmount(amount));
+					} else {
+						errorMessage(sender);
+					}
 				} else {
 					noPermMessage(sender);
 				}
@@ -93,18 +123,21 @@ public class MoneyCommand implements CommandExecutor {
 		}
 	}
 	
+	private String formatAmount(int amount) {
+		return "" + ChatColor.YELLOW + amount + " " + ChatColor.AQUA + base.getCurrencyName(amount != 1);
+	}
+	
 	private void noPermMessage(CommandSender sender) {
 		sender.sendMessage(ChatColor.RED + "You don't have the permission to use this command");
 	}
 	
-	private void successMessage(CommandSender sender, Boolean success) {
-		sender.sendMessage(success ? ChatColor.GREEN + "Success" : ChatColor.RED + "ERROR");
+	private void errorMessage(CommandSender sender) {
+		sender.sendMessage(ChatColor.RED + "An error occured");
 	}
 	
-	private void get(CommandSender sender, String player) {
-		int balance = base.getBalance(player);
-		String currencyName = base.getCurrencyName(balance != 1);
-		sender.sendMessage(balance + " " + ChatColor.YELLOW + currencyName);
+	private void get(CommandSender sender, OfflinePlayer player) {
+		int amount = base.getBalance(player);
+		sender.sendMessage(ChatColor.GREEN + "You own " + formatAmount(amount));
 	}
 	
 	private void usage(CommandSender sender) {
