@@ -1,0 +1,12 @@
+# You need ProtocolLib for disabling tab completion
+
+disable:
+  tab-completion: true
+  plugins: true
+  version: true
+  help: true
+
+messages:
+  plugins: 'No plugin information available'
+  version: 'No version information available'
+  help: 'No help available'
