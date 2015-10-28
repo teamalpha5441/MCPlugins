@@ -46,8 +46,8 @@ public class Database {
 	public ResultSet executeQuery(String SQL, Object... Args) {
 		try {
 			PreparedStatement ps = _Connection.prepareStatement(SQL);
-			for (int i = 0; i < Args.length; i++) {
-				ps.setObject(i + 1, Args[i]);
+			for (int i = 1; i <= Args.length; i++) {
+				ps.setObject(i, Args[i]);
 			}
 			return ps.executeQuery();
 		} catch (SQLException e) {
@@ -65,8 +65,8 @@ public class Database {
 	public int executeUpdate(String SQL, Object... Args) {
 		try {
 			PreparedStatement ps = _Connection.prepareStatement(SQL);
-			for (int i = 0; i < Args.length; i++) {
-				ps.setObject(i + 1, Args[i]);
+			for (int i = 1; i <= Args.length; i++) {
+				ps.setObject(i, Args[i]);
 			}
 			return ps.executeUpdate();
 		} catch (SQLException e) {
@@ -86,7 +86,7 @@ public class Database {
 		if (rs != null) {
 			try {
 				if (rs.next()) {
-					return rs.getObject(0);
+					return rs.getObject(1);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

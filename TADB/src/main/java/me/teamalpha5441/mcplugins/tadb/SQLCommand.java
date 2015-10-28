@@ -21,10 +21,13 @@ class SQLCommand implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (args.length > 0) {
+		if (!base.getConfig().getBoolean("enable-sql-command", false)) {
+			sender.sendMessage(ChatColor.RED + "SQL command is not enabled");
+			return true;
+		} else if (args.length > 0) {
 			String query = stringJoin(Arrays.asList(args), " ");
 			try {
-				ResultSet result = DatabaseManager.getDatabaseManager(base.getServer()).getDatabase().executeQuery(query);
+				ResultSet result = TADB.getDatabaseWrapper().executeQuery(query);
 				ResultSetMetaData rsMeta = result.getMetaData();
 				//print columns
 				while (result.next()) {
