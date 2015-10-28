@@ -3,22 +3,21 @@ package me.teamalpha5441.mcplugins.admintools.commands;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.World;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 import me.teamalpha5441.mcplugins.admintools.AdminTools;
+import me.teamalpha5441.mcplugins.admintools.NoArgCommand;
 
-public class XReloadCommand implements CommandExecutor {
+public class XReloadCommand extends NoArgCommand {
 
 	private final AdminTools base;
 	
 	public XReloadCommand(AdminTools base) {
 		this.base = base;
 	}
-	
+
 	@Override
-	public boolean onCommand(final CommandSender sender, Command cmd, String label, String[] args) {
+	public void onNoArgCommand(CommandSender sender) {
 		final Server server = base.getServer();
 		server.broadcastMessage(ChatColor.LIGHT_PURPLE + "[Server] " + ChatColor.YELLOW + "Reloading server in 3 seconds, please prepare and reconnect if you disconnect.");
 		final Runnable reloadRunnable = new Runnable() {
@@ -36,6 +35,5 @@ public class XReloadCommand implements CommandExecutor {
 			}
 		}; 
 		server.getScheduler().scheduleSyncDelayedTask(base, reloadRunnable, 3 * 20);
-		return true;
-	} 
+	}
 }
