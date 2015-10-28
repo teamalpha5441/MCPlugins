@@ -55,8 +55,8 @@ public class TAPing extends JavaPlugin implements Listener {
 					try {
 						CachedServerIcon icon = getServer().loadServerIcon(iconFile);
 						icons.add(icon);
-					} catch (Exception e) {
-						e.printStackTrace();
+					} catch (Exception ex) {
+						getLogger().log(Level.SEVERE, "Couldn't load icon file " + fileName, ex);
 					}
 				} else {
 					getLogger().log(Level.SEVERE, "Icon file '" + fileName + "' not found");
