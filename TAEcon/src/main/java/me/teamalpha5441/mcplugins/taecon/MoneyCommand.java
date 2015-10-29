@@ -24,7 +24,9 @@ public class MoneyCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (args.length < 1) {
 			if (sender instanceof Player) {
-				get(sender, (Player)sender);
+				Player player = (Player)sender;
+				int amount = base.getBalance(player);
+				player.sendMessage(ChatColor.GREEN + "You own " + formatAmount(amount));
 			} else {
 				usage(sender);
 			}
@@ -50,7 +52,8 @@ public class MoneyCommand implements CommandExecutor {
 		} else if (args[0].equals("get")) {
 			if (args.length == 2) {
 				if (sender.hasPermission("taecon.admin")) {
-					get(sender, getPlayer(args[1]));
+					int amount = base.getBalance(getPlayer(args[1]));
+					sender.sendMessage(formatAmount(amount));
 				} else {
 					noPermMessage(sender);
 				}
@@ -133,11 +136,6 @@ public class MoneyCommand implements CommandExecutor {
 	
 	private void errorMessage(CommandSender sender) {
 		sender.sendMessage(ChatColor.RED + "An error occured");
-	}
-	
-	private void get(CommandSender sender, OfflinePlayer player) {
-		int amount = base.getBalance(player);
-		sender.sendMessage(ChatColor.GREEN + "You own " + formatAmount(amount));
 	}
 	
 	private void usage(CommandSender sender) {
