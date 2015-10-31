@@ -2,16 +2,15 @@ package me.teamalpha5441.mcplugins.tadb;
 
 import java.util.logging.Level;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.zaxxer.hikari.HikariDataSource;
 
 public class TADB extends JavaPlugin {
 	
-	private static final String PLUGIN_NAME = "TADB";
+	static final String PLUGIN_NAME = "TADB";
 	
-	private HikariDataSource dataSource;
+	HikariDataSource dataSource;
 	
 	@Override
 	public void onLoad() {
@@ -30,27 +29,26 @@ public class TADB extends JavaPlugin {
 		dataSource.addDataSourceProperty("password", getConfig().getString("mariadb.password"));
 		dataSource.addDataSourceProperty("databaseName", getConfig().getString("mariadb.database"));
 		
+		Database testDatabase = null;
+		try {
+			testDatabase = new Database(dataSource.getConnection(), getLogger());
+			long testResult = (long)testDatabase.executeQueryScalar("SELECT 17");
+			if (testResult != 17) {
+				throw new Exception("Database test query failed");
+			}
+		} catch (Exception ex) {
+			getLogger().log(Level.SEVERE, "Database test failed", ex);
+			getServer().getPluginManager().disablePlugin(this);
+		} finally {
+			if (testDatabase != null)
+				testDatabase.closeConnection();
+		}
+		
 		getCommand("sql").setExecutor(new SQLCommand(this));
 	}
 	
 	@Override
 	public void onDisable() {
 		dataSource.close();
-	}
-	
-	public static Database getDatabaseWrapper() throws Exception {
-		try {
-			TADB tadb = (TADB)Bukkit.getServer().getPluginManager().getPlugin(PLUGIN_NAME);
-			if (tadb == null) {
-				throw new Exception(PLUGIN_NAME + " not found");
-			} else if (!tadb.isEnabled()) {
-				throw new Exception(PLUGIN_NAME + " not enabled");
-			} else {
-				return new Database(tadb.dataSource.getConnection());
-			}
-		} catch (Exception ex) {
-			Bukkit.getLogger().log(Level.SEVERE, "Couldn't connect to database", ex);
-			return null;
-		}
 	}
 }

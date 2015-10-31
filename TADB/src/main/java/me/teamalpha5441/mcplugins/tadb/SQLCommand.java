@@ -27,7 +27,7 @@ class SQLCommand implements CommandExecutor {
 		} else if (args.length > 0) {
 			String query = stringJoin(Arrays.asList(args), " ");
 			try {
-				ResultSet result = TADB.getDatabaseWrapper().executeQuery(query);
+				ResultSet result = Database.getDatabase().executeQuery(query);
 				ResultSetMetaData rsMeta = result.getMetaData();
 				//print columns
 				while (result.next()) {

@@ -4,16 +4,56 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 
 public class Database {
 
+	public static void testConnection() throws Exception {
+		TADB tadb = (TADB)Bukkit.getServer().getPluginManager().getPlugin(TADB.PLUGIN_NAME);
+		if (tadb == null) {
+			throw new Exception(TADB.PLUGIN_NAME + " not found");
+		} else if (!tadb.isEnabled()) {
+			throw new Exception(TADB.PLUGIN_NAME + " not enabled");
+		}
+	}
+	
+	public static void testConnection(Plugin testingPlugin) {
+		try {
+			testConnection();
+		} catch (Exception ex) {
+			testingPlugin.getLogger().log(Level.SEVERE, "Database not available", ex);
+			Bukkit.getServer().getPluginManager().disablePlugin(testingPlugin);
+		}
+	}
+	
+	public static Database getDatabase() {
+		return getDatabase(Bukkit.getLogger());
+	}
+	
+	public static Database getDatabase(Logger logger) {
+		try {
+			TADB tadb = (TADB)Bukkit.getServer().getPluginManager().getPlugin(TADB.PLUGIN_NAME);
+			testConnection();
+			return new Database(tadb.dataSource.getConnection(), logger);
+		} catch (Exception ex) {
+			logger.log(Level.SEVERE, "Couldn't connect to database", ex);
+			return null;
+		}
+	}
+	
 	private Connection _Connection;
+	private Logger _Logger;
 	
 	/**
 	 * Creates a new Database instance around a given database connection
 	 * @param Connection The database connection
+	 * @param logger 
 	 */
-	public Database(Connection Connection) {
+	public Database(Connection Connection, Logger logger) {
 		_Connection = Connection;
 	}
 	
@@ -29,11 +69,13 @@ public class Database {
 	 * Closes the database connection
 	 * Do not reuse this Database instance after calling closeConnection()
 	 */
-	public void closeConnection() {
+	public boolean closeConnection() {
 		try {
 			_Connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
+			return true;
+		} catch (SQLException ex) {
+			_Logger.log(Level.SEVERE, "Couldn't execute query", ex);
+			return false;
 		}
 	}
 	
@@ -50,8 +92,8 @@ public class Database {
 				ps.setObject(i + 1, Args[i]);
 			}
 			return ps.executeQuery();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException ex) {
+			_Logger.log(Level.SEVERE, "Couldn't execute query", ex);
 			return null;
 		}
 	}
@@ -69,8 +111,8 @@ public class Database {
 				ps.setObject(i + 1, Args[i]);
 			}
 			return ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException ex) {
+			_Logger.log(Level.SEVERE, "Couldn't execute query", ex);
 			return -1;
 		}
 	}
@@ -88,24 +130,10 @@ public class Database {
 				if (rs.next()) {
 					return rs.getObject(1);
 				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+			} catch (SQLException ex) {
+				_Logger.log(Level.SEVERE, "Couldn't execute query", ex);
 			}
 		}
 		return null;
-	}
-	
-	/**
-	 * Tests the connection to the database by executing "SELECT 1" and checking the result
-	 * @return True if "SELECT 1" returned 1 and no exception occured
-	 */
-	public boolean testConnection() {
-		Object oneObj = executeQueryScalar("SELECT 1");
-		if (oneObj != null) {
-			if (oneObj instanceof Integer) {
-				return (int)oneObj == 1;
-			}
-		}
-		return false;
 	}
 }
