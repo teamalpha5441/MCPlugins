@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.teamalpha5441.mcplugins.takickmsg</groupId>
   <artifactId>TAKickMsg</artifactId>
-  <version>0.3-SNAPSHOT</version>
+  <version>0.3.1-SNAPSHOT</version>
   <name>TAKickMsg</name>
   <description>Kicks every joining player with a custom message</description>
   

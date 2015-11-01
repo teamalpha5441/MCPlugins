@@ -7,10 +7,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class CmdTrap extends JavaPlugin {
 
 	private TabCompletionTrap tabCompletionTrap;
+
+	@Override
+	public void onLoad() {
+		saveDefaultConfig();
+	}
 	
 	@Override
 	public void onEnable() {
-		saveDefaultConfig();
 		getServer().getPluginManager().registerEvents(new CommandTrap(this), this);
 		if (getConfig().getBoolean(StaticVars.CONF_DISABLE_TAB_COMPLETION, true)) {
 			if (getServer().getPluginManager().isPluginEnabled("ProtocolLib")) {

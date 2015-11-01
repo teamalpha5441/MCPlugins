@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.teamalpha5441.mcplugins.tavoid</groupId>
   <artifactId>TAVoid</artifactId>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.2.1-SNAPSHOT</version>
   <name>TAVoid</name>
   <description>A custom world generator which generates empty chunks</description>
 

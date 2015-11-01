@@ -17,10 +17,14 @@ public class TAPing extends JavaPlugin implements Listener {
 	private Random _Random = new Random();
 	private ArrayList<CachedServerIcon> _Icons;
 	private ArrayList<String> _MOTDs;
-	
+
+	@Override
+	public void onLoad() {	
+		saveDefaultConfig();
+	}
+
 	@Override
 	public void onEnable() {
-		saveDefaultConfig();
 		getServer().getPluginManager().registerEvents(this, this);
 		
 		_MOTDs = loadMOTDs();

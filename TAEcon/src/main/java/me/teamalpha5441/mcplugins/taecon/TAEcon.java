@@ -16,10 +16,14 @@ public class TAEcon extends JavaPlugin {
 	private int defaultBalance = 0;
 	private String currencySingular = null;
 	private String currencyPlural = null;
+
+	@Override
+	public void onLoad() {
+		saveDefaultConfig();
+	}
 	
 	@Override
 	public void onEnable() {
-		saveDefaultConfig();
 		reloadPlugin();
 		getCommand("money").setExecutor(new MoneyCommand(this));
 		if (getServer().getPluginManager().isPluginEnabled("Vault")) {

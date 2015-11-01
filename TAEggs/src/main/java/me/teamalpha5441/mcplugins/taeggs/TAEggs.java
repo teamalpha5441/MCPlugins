@@ -23,10 +23,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
 public class TAEggs extends JavaPlugin implements Listener {
+
+	@Override
+	public void onLoad() {
+		saveDefaultConfig();
+	}
 	
 	@Override
 	public void onEnable() {
-		saveDefaultConfig();
 		getServer().getPluginManager().registerEvents(this, this);
 	}
 	

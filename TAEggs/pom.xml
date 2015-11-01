@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.teamalpha5441.mcplugins.taeggs</groupId>
   <artifactId>TAEggs</artifactId>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.2.1-SNAPSHOT</version>
   <name>TAEggs</name>
   <description>Allows to capture mobs into spawner eggs</description>
 

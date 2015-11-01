@@ -14,10 +14,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class TAKickMsg extends JavaPlugin implements Listener {
 	private String message;
+
+	@Override
+	public void onLoad() {
+		saveDefaultConfig();
+	}
 	
 	@Override
 	public void onEnable() {
-		saveDefaultConfig();
 		message = getConfig().getString("message", ChatColor.RED + "ERROR");
 		message = translateColorCodes(message);
 		getServer().getPluginManager().registerEvents(this, this);
