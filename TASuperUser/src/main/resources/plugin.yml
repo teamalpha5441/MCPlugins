@@ -8,6 +8,15 @@ commands:
   su:
     description: Login as an operator
     usage: /<command> <password>
+    permission: tasuperuser.su
   runas:
     description: Run a command as another player
     usage: '/<command> <player> <cmd> [arg] [arg] ...'
+    permission: tasuperuser.runas
+
+permissions:
+  tasuperuser.su:
+    description: Allows you to login as an operator
+  tasuperuser.runas:
+    description: Allows you to run commands as another player
+    default: op

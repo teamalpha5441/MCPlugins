@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.teamalpha5441.mcplugins.tasuperuser</groupId>
   <artifactId>TASuperUser</artifactId>
-  <version>0.1.1-SNAPSHOT</version>
+  <version>0.1.2-SNAPSHOT</version>
   <name>TASuperUser</name>
   <description>Allows you to easily gain OP privileges</description>
 

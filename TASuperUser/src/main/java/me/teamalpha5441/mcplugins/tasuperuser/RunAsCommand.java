@@ -1,29 +1,24 @@
 package me.teamalpha5441.mcplugins.tasuperuser;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class RunAsCommand implements CommandExecutor {
-
-	private TASuperUser base;
 	
-	public RunAsCommand(TASuperUser base) {
-		this.base = base;
+	@SuppressWarnings("deprecation")
+	private Player getPlayerUnsafe(String playerName) {
+		return Bukkit.getServer().getPlayer(playerName);
 	}
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (!sender.isOp()) {
-			base.msgMustBeOp(sender);
-		} else if (args.length < 2) {
-			return false; 
-		} else {
-			@SuppressWarnings("deprecation")
-			Player player = base.getServer().getPlayer(args[0]);
+		if (args.length > 1) {
+			Player player = getPlayerUnsafe(args[0]);
 			if (player == null) {
-				base.msgPlayerNotFound(sender);
+				sender.sendMessage(StaticVars.MESSAGE_PLAYER_NOT_FOUND);
 			} else {
 				StringBuilder sb = new StringBuilder();
 				if (args[1].startsWith("/")) {
@@ -35,10 +30,12 @@ public class RunAsCommand implements CommandExecutor {
 					sb.append(' ');
 					sb.append(args[i]);
 				}
-				base.getServer().dispatchCommand(player, sb.toString());
-				base.msgCommandExecuted(sender);
+				Bukkit.getServer().dispatchCommand(player, sb.toString());
+				sender.sendMessage(StaticVars.MESSAGE_COMMAND_EXECUTED);
 			}
+			return true;
+		} else {
+			return false;
 		}
-		return true;
 	}
 }
