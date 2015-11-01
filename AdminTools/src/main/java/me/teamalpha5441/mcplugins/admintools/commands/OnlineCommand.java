@@ -15,10 +15,14 @@ public class OnlineCommand extends NoArgCommand {
 	@Override
 	public void onNoArgCommand(CommandSender sender) {
 		Collection<? extends Player> players = Bukkit.getServer().getOnlinePlayers();
-		ArrayList<String> displayNames = new ArrayList<String>(players.size());
-		for (Player player : players) {
-			displayNames.add(player.getDisplayName() + ChatColor.RESET);
+		if (players.size() > 0) {
+			ArrayList<String> displayNames = new ArrayList<String>(players.size());
+			for (Player player : players) {
+				displayNames.add(player.getDisplayName() + ChatColor.RESET);
+			}
+			sender.sendMessage(String.join(", ", displayNames));
+		} else {
+			sender.sendMessage(ChatColor.YELLOW + "No players online");
 		}
-		sender.sendMessage(String.join(", ", displayNames));
 	}
 }

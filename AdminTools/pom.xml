@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.teamalpha5441.mcplugins.admintools</groupId>
   <artifactId>AdminTools</artifactId>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.2.1-SNAPSHOT</version>
   <name>AdminTools</name>
   <description>Collection of admin commands and tools</description>
   

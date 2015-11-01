@@ -15,7 +15,8 @@ public class FreezeCommand extends PlayerCommand {
 		PotionEffect[] effects = new PotionEffect[] {
 				new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 7),
 				new PotionEffect(PotionEffectType.SLOW_DIGGING, Integer.MAX_VALUE, 5),
-				new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, 128)
+				new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, 128),
+				new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 100)
 		};
 		for (PotionEffect effect : effects) {
 			player.addPotionEffect(effect);
