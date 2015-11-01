@@ -10,11 +10,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class TASudo extends JavaPlugin implements Listener {
+public class TASuperUser extends JavaPlugin implements Listener {
+
+	public void onLoad() {
+		saveDefaultConfig();
+	}
 
 	@Override
 	public void onEnable() {
-		saveDefaultConfig();
 		getCommand("su").setExecutor(new SuCommand(this));
 		getCommand("runas").setExecutor(new RunAsCommand(this));
 		getServer().getPluginManager().registerEvents(this, this);

@@ -7,9 +7,9 @@ import org.bukkit.entity.Player;
 
 public class SuCommand implements CommandExecutor {
 
-	private TASudo base;
+	private TASuperUser base;
 	
-	public SuCommand(TASudo base) {
+	public SuCommand(TASuperUser base) {
 		this.base = base;
 	}
 	

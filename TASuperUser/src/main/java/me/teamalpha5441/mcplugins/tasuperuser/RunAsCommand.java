@@ -7,9 +7,9 @@ import org.bukkit.entity.Player;
 
 public class RunAsCommand implements CommandExecutor {
 
-	private TASudo base;
+	private TASuperUser base;
 	
-	public RunAsCommand(TASudo base) {
+	public RunAsCommand(TASuperUser base) {
 		this.base = base;
 	}
 	
