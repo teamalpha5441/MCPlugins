@@ -16,8 +16,8 @@ public class Database {
 		TADB tadb = (TADB)Bukkit.getServer().getPluginManager().getPlugin(TADB.PLUGIN_NAME);
 		if (tadb == null) {
 			throw new Exception(TADB.PLUGIN_NAME + " not found");
-		} else if (!tadb.isEnabled()) {
-			throw new Exception(TADB.PLUGIN_NAME + " not enabled");
+		} else if (tadb.dataSource == null) {
+			throw new Exception("Database not available");
 		}
 	}
 	
@@ -40,7 +40,7 @@ public class Database {
 			testConnection();
 			return new Database(tadb.dataSource.getConnection(), logger);
 		} catch (Exception ex) {
-			logger.log(Level.SEVERE, "Couldn't connect to database", ex);
+			logger.log(Level.SEVERE, "Database not available", ex);
 			return null;
 		}
 	}

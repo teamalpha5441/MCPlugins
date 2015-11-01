@@ -15,10 +15,7 @@ public class TADB extends JavaPlugin {
 	@Override
 	public void onLoad() {
 		saveDefaultConfig();
-	}
-	
-	@Override
-	public void onEnable() {
+		
 		dataSource = new HikariDataSource();
 		dataSource.setMinimumIdle(2);
 		dataSource.setPoolName(getName());
@@ -37,13 +34,17 @@ public class TADB extends JavaPlugin {
 				throw new Exception("Database test query failed");
 			}
 		} catch (Exception ex) {
+			dataSource = null;
 			getLogger().log(Level.SEVERE, "Database test failed", ex);
 			getServer().getPluginManager().disablePlugin(this);
 		} finally {
 			if (testDatabase != null)
 				testDatabase.closeConnection();
 		}
-		
+	}
+	
+	@Override
+	public void onEnable() {
 		getCommand("sql").setExecutor(new SQLCommand(this));
 	}
 	
