@@ -1,6 +1,17 @@
+# Maven output files
 target/
+
+# Eclipse project files
 .settings/
 .classpath
 .project
+
+# Auto-generated .gitignore files
 */.gitignore
+
+# Maven shadow plugin
 dependency-reduced-pom.xml
+
+# Test environment
+other/
+testserver/
