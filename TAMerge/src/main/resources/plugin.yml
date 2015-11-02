@@ -1,0 +1,30 @@
+name: ${project.name}
+author: teamalpha5441
+version: ${project.version}
+description: ${project.description}
+main: ${project.groupId}.${project.name}
+
+commands:
+  merge:
+    description: Merge two items, repair them and combine their enchantments
+    usage: /<command> <ItemPosition1> <ItemPosition2>
+    permission: tamerge.merge
+    aliases: [ amboss, anvil, combine, repair ]
+  extract:
+    description: Extracts enchantments out of an item
+    usage: /<command> <ItemPosition>
+    permission: tamerge.extract
+    aliases: split
+  crystal:
+    description: Give yourself an unenchanted magic crystal
+    usage: /<command>
+    permission: tamerge.crystal
+
+permissions:
+  tamerge.merge:
+    description: Allows you to merge two items, repair them and combine their enchantments
+  tamerge.extract:
+    description: Allows you to extract enchantments out of items
+  tamerge.crystal:
+    description: Allows you to give yourself magic crystals
+    default: op

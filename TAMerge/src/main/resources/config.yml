@@ -1,0 +1,9 @@
+# Magic crystals are enchanted emeralds (not craftable)
+# They can be used like enchanted books
+# Admins can create them with /give and /enchant
+enable-magic-crystal: true
+
+# Level cost, 0 to disable
+cost:
+  merge: 0
+  extract: 0
