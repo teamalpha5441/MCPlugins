@@ -28,7 +28,7 @@ public class TAEcon extends JavaPlugin {
 		getCommand("money").setExecutor(new MoneyCommand(this));
 		if (getServer().getPluginManager().isPluginEnabled("Vault")) {
 			final VaultImplementation vault = new VaultImplementation(this);
-			getServer().getServicesManager().register(Economy.class, vault, this, ServicePriority.High);
+			getServer().getServicesManager().register(Economy.class, vault, this, ServicePriority.Normal);
 			getLogger().log(Level.INFO, "Hooked into Vault");
 		}
 	}
