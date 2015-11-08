@@ -50,11 +50,11 @@ public class Database {
 	
 	/**
 	 * Creates a new Database instance around a given database connection
-	 * @param Connection The database connection
-	 * @param logger 
+	 * @param connection The database connection
 	 */
-	public Database(Connection Connection, Logger logger) {
-		_Connection = Connection;
+	Database(Connection connection, Logger logger) {
+		this._Connection = connection;
+		this._Logger = logger;
 	}
 	
 	/**
