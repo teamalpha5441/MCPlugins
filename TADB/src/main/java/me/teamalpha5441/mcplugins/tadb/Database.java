@@ -12,18 +12,14 @@ import org.bukkit.plugin.Plugin;
 
 public class Database {
 
-	public static void testConnection() throws Exception {
-		TADB tadb = (TADB)Bukkit.getServer().getPluginManager().getPlugin(TADB.PLUGIN_NAME);
-		if (tadb == null) {
-			throw new Exception(TADB.PLUGIN_NAME + " not found");
-		} else if (tadb.dataSource == null) {
-			throw new Exception("Database not available");
-		}
-	}
-	
 	public static void testConnection(Plugin testingPlugin) {
 		try {
-			testConnection();
+			TADB tadb = (TADB)Bukkit.getServer().getPluginManager().getPlugin(TADB.PLUGIN_NAME);
+			if (tadb == null) {
+				throw new Exception(TADB.PLUGIN_NAME + " not found");
+			} else if (tadb.dataSource == null) {
+				throw new Exception("Database not available");
+			}
 		} catch (Exception ex) {
 			testingPlugin.getLogger().log(Level.SEVERE, "Database not available", ex);
 			Bukkit.getServer().getPluginManager().disablePlugin(testingPlugin);
@@ -37,7 +33,6 @@ public class Database {
 	public static Database getDatabase(Logger logger) {
 		try {
 			TADB tadb = (TADB)Bukkit.getServer().getPluginManager().getPlugin(TADB.PLUGIN_NAME);
-			testConnection();
 			return new Database(tadb.dataSource.getConnection(), logger);
 		} catch (Exception ex) {
 			logger.log(Level.SEVERE, "Database not available", ex);
