@@ -5,37 +5,36 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Prefixer extends JavaPlugin implements Listener {
 
-	private static PrefixManager prefixManager;
-	
-	static PrefixManager getPrefixManager() {
-		return Prefixer.prefixManager;
-	}
+	private PrefixManager prefixManager;
 	
 	@Override
 	public void onEnable() {
-		Prefixer.prefixManager = new PrefixManager();
+		this.prefixManager = new PrefixManager();
 		for (Player player : getServer().getOnlinePlayers()) {
-			Prefixer.prefixManager.managePlayer(player);
+			this.prefixManager.managePlayer(player);
 		}
+		getServer().getServicesManager().register(PrefixManager.class, this.prefixManager, this, ServicePriority.Normal);
 		getServer().getPluginManager().registerEvents(this, this);
 	}
 	
 	@Override
 	public void onDisable() {
-		Prefixer.prefixManager = null;
+		getServer().getServicesManager().unregister(this.prefixManager);
+		this.prefixManager = null;
 	}
 	
 	@EventHandler
 	public void onPlayerJoinEvent(PlayerJoinEvent evt) {
-		Prefixer.prefixManager.managePlayer(evt.getPlayer());
+		this.prefixManager.managePlayer(evt.getPlayer());
 	}
 	
 	@EventHandler
 	public void onPlayerQuitEvent(PlayerQuitEvent evt) {
-		Prefixer.prefixManager.unmanagePlayer(evt.getPlayer());
+		this.prefixManager.unmanagePlayer(evt.getPlayer());
 	}
 }

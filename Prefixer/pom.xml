@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.teamalpha5441.mcplugins.prefixer</groupId>
   <artifactId>Prefixer</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <version>0.2-SNAPSHOT</version>
   <name>Prefixer</name>
   <description>Allows you to set (color) prefixes for players</description>
 

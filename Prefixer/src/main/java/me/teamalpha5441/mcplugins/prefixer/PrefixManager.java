@@ -10,16 +10,12 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 public class PrefixManager {
-
-	public static PrefixManager getPrefixManager() {
-		return Prefixer.getPrefixManager();
-	}
 	
 	private final Scoreboard scoreboard;
 	private final HashMap<UUID, String> lowPriorityPrefixes;
 	private final HashMap<UUID, String> prefixes;
 	
-	public PrefixManager() {
+	PrefixManager() {
 		this.scoreboard = Bukkit.getServer().getScoreboardManager().getNewScoreboard();
 		this.lowPriorityPrefixes = new HashMap<UUID, String>();
 		this.prefixes = new HashMap<UUID, String>();
