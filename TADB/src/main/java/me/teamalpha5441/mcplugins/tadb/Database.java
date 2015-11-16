@@ -7,40 +7,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
-
 public class Database {
-
-	public static boolean testConnection(Plugin testingPlugin) {
-		try {
-			TADB tadb = (TADB)Bukkit.getServer().getPluginManager().getPlugin(TADB.PLUGIN_NAME);
-			if (tadb == null) {
-				throw new Exception(TADB.PLUGIN_NAME + " not found");
-			} else if (tadb.dataSource == null) {
-				throw new Exception("Database not available");
-			}
-			return true;
-		} catch (Exception ex) {
-			testingPlugin.getLogger().log(Level.SEVERE, "Database not available", ex);
-			Bukkit.getServer().getPluginManager().disablePlugin(testingPlugin);
-			return false;
-		}
-	}
-	
-	public static Database getDatabase() {
-		return getDatabase(Bukkit.getLogger());
-	}
-	
-	public static Database getDatabase(Logger logger) {
-		try {
-			TADB tadb = (TADB)Bukkit.getServer().getPluginManager().getPlugin(TADB.PLUGIN_NAME);
-			return new Database(tadb.dataSource.getConnection(), logger);
-		} catch (Exception ex) {
-			logger.log(Level.SEVERE, "Database not available", ex);
-			return null;
-		}
-	}
 	
 	private Connection _Connection;
 	private Logger _Logger;
@@ -49,7 +16,7 @@ public class Database {
 	 * Creates a new Database instance around a given database connection
 	 * @param connection The database connection
 	 */
-	Database(Connection connection, Logger logger) {
+	public Database(Connection connection, Logger logger) {
 		this._Connection = connection;
 		this._Logger = logger;
 	}
@@ -64,14 +31,14 @@ public class Database {
 	
 	/**
 	 * Closes the database connection
-	 * Do not reuse this Database instance after calling closeConnection()
+	 * Do not reuse this Database instance after calling
 	 */
-	public boolean closeConnection() {
+	public boolean close() {
 		try {
 			_Connection.close();
 			return true;
 		} catch (SQLException ex) {
-			_Logger.log(Level.SEVERE, "Couldn't execute query", ex);
+			_Logger.log(Level.SEVERE, "Couldn't close database connection", ex);
 			return false;
 		}
 	}
