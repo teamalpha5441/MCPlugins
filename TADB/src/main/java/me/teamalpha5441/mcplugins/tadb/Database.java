@@ -12,7 +12,7 @@ import org.bukkit.plugin.Plugin;
 
 public class Database {
 
-	public static void testConnection(Plugin testingPlugin) {
+	public static boolean testConnection(Plugin testingPlugin) {
 		try {
 			TADB tadb = (TADB)Bukkit.getServer().getPluginManager().getPlugin(TADB.PLUGIN_NAME);
 			if (tadb == null) {
@@ -20,9 +20,11 @@ public class Database {
 			} else if (tadb.dataSource == null) {
 				throw new Exception("Database not available");
 			}
+			return true;
 		} catch (Exception ex) {
 			testingPlugin.getLogger().log(Level.SEVERE, "Database not available", ex);
 			Bukkit.getServer().getPluginManager().disablePlugin(testingPlugin);
+			return false;
 		}
 	}
 	

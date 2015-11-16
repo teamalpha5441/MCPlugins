@@ -51,5 +51,6 @@ public class TADB extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		dataSource.close();
+		dataSource = null;
 	}
 }
