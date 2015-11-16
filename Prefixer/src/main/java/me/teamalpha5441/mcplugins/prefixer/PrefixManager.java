@@ -71,10 +71,10 @@ public class PrefixManager {
 	}
 	
 	private void updatePlayerPrefix(Player player) {
-		Team currentTeam = this.scoreboard.getPlayerTeam(player);
+		Team currentTeam = this.scoreboard.getEntryTeam(player.getName());
 		if (currentTeam != null) {
-			currentTeam.removePlayer(player);
-			if (currentTeam.getPlayers().size() == 0) {
+			currentTeam.removeEntry(player.getName());
+			if (currentTeam.getEntries().size() == 0) {
 				currentTeam.unregister();
 			}
 		}
@@ -86,7 +86,7 @@ public class PrefixManager {
 				newTeam.setPrefix(prefix);
 				newTeam.setSuffix("" + ChatColor.RESET);
 			}
-			newTeam.addPlayer(player);
+			newTeam.addEntry(player.getName());
 			player.setDisplayName(prefix + player.getName() + ChatColor.RESET);
 		}
 	}
