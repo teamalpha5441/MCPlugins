@@ -10,17 +10,24 @@ import org.bukkit.inventory.ItemStack;
 
 public class EnchantmentMerger {
 	
-	public static Map<Enchantment, Integer> merge(Map<Enchantment, Integer> E1, Map<Enchantment, Integer> E2, Material Material) {
+	public static Map<Enchantment, Integer> merge(Map<Enchantment, Integer> E1, Map<Enchantment, Integer> E2, Material Material, Map<Enchantment, Integer> LevelLimits) {
 		HashMap<Enchantment, Integer> newEnchantments = new HashMap<Enchantment, Integer>();
 		newEnchantments.putAll(E1);
 		for (Map.Entry<Enchantment, Integer> entry : E2.entrySet()) {
 			Enchantment ench = entry.getKey();
 			int level = entry.getValue();
 			if (newEnchantments.containsKey(ench)) {
-				int newLevel = newEnchantments.get(ench);
-				if (level == newLevel) {
-					newEnchantments.put(ench, level + 1);
-				} else if (level > newLevel) {
+				int actualLevel = newEnchantments.get(ench);
+				if (level == actualLevel) {
+					Integer maxLevel = LevelLimits.get(ench);
+					if (maxLevel != null) {
+						if (level < maxLevel) {
+							newEnchantments.put(ench, level + 1);
+						}
+					} else {
+						newEnchantments.put(ench, level + 1);
+					}
+				} else if (level > actualLevel) {
 					newEnchantments.put(ench, level);
 				}
 			} else if (!conflictsWithSet(newEnchantments.keySet(), ench) && canEnchant(ench, Material)) {

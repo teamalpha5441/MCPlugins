@@ -9,7 +9,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ItemMerger {
 	
-	public static ItemStack merge(ItemStack i1, ItemStack i2) {
+	public static ItemStack merge(ItemStack i1, ItemStack i2, Map<Enchantment, Integer> levelLimits) {
 		Material m1 = i1.getType();
 		Material m2 = i2.getType();
 		ItemStack finalItem = new ItemStack(m1, 1);
@@ -25,7 +25,7 @@ public class ItemMerger {
 		//Set enchantments
 		Map<Enchantment, Integer> i1enchs = Helper.getEnchantments(i1);
 		Map<Enchantment, Integer> i2enchs = Helper.getEnchantments(i2);
-		Map<Enchantment, Integer> enchs = EnchantmentMerger.merge(i1enchs, i2enchs, m1);
+		Map<Enchantment, Integer> enchs = EnchantmentMerger.merge(i1enchs, i2enchs, m1, levelLimits);
 		Helper.setEnchantments(finalItem, enchs);
 		
 		//Set display name

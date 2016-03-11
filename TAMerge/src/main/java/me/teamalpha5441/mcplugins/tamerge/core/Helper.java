@@ -15,6 +15,38 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
 public class Helper {
+
+	private static final HashMap<String, Enchantment> _EnchantmentNameMap = new HashMap<String, Enchantment>();
+	
+	static {
+		_EnchantmentNameMap.put("protection", Enchantment.PROTECTION_ENVIRONMENTAL);
+		_EnchantmentNameMap.put("fire_protection", Enchantment.PROTECTION_FIRE);
+		_EnchantmentNameMap.put("feather_falling", Enchantment.PROTECTION_FALL);
+		_EnchantmentNameMap.put("blast_protection", Enchantment.PROTECTION_EXPLOSIONS);
+		_EnchantmentNameMap.put("projectile_protection", Enchantment.PROTECTION_PROJECTILE);
+		_EnchantmentNameMap.put("respiration", Enchantment.OXYGEN);
+		_EnchantmentNameMap.put("aqua_affinity", Enchantment.WATER_WORKER);
+		_EnchantmentNameMap.put("thorns", Enchantment.THORNS);
+		_EnchantmentNameMap.put("depth_strider", Enchantment.DEPTH_STRIDER);
+		_EnchantmentNameMap.put("frost_walker", Enchantment.FROST_WALKER);
+		_EnchantmentNameMap.put("sharpness", Enchantment.DAMAGE_ALL);
+		_EnchantmentNameMap.put("smite", Enchantment.DAMAGE_UNDEAD);
+		_EnchantmentNameMap.put("bane_of_arthropods", Enchantment.DAMAGE_ARTHROPODS);
+		_EnchantmentNameMap.put("knockback", Enchantment.KNOCKBACK);
+		_EnchantmentNameMap.put("fire_aspect", Enchantment.FIRE_ASPECT);
+		_EnchantmentNameMap.put("looting", Enchantment.LOOT_BONUS_MOBS);
+		_EnchantmentNameMap.put("efficiency", Enchantment.DIG_SPEED);
+		_EnchantmentNameMap.put("silk_touch", Enchantment.SILK_TOUCH);
+		_EnchantmentNameMap.put("unbreaking", Enchantment.DURABILITY);
+		_EnchantmentNameMap.put("fortune", Enchantment.LOOT_BONUS_BLOCKS);
+		_EnchantmentNameMap.put("power", Enchantment.ARROW_DAMAGE);
+		_EnchantmentNameMap.put("punch", Enchantment.ARROW_KNOCKBACK);
+		_EnchantmentNameMap.put("flame", Enchantment.ARROW_FIRE);
+		_EnchantmentNameMap.put("infinity", Enchantment.ARROW_INFINITE);
+		_EnchantmentNameMap.put("luck_of_the_sea", Enchantment.LUCK);
+		_EnchantmentNameMap.put("lure", Enchantment.LURE);
+		_EnchantmentNameMap.put("mending", Enchantment.MENDING);
+	}
 	
 	public static void giveOrDropItem(Player player, ItemStack stack) {
 		giveOrDropItems(player, new ItemStack[] { stack });
@@ -87,5 +119,9 @@ public class Helper {
 				I.removeEnchantment(ench);
 			}
 		}
+	}
+	
+	public static Enchantment getEnchantmentByName(String name) {
+		return _EnchantmentNameMap.get(name);
 	}
 }

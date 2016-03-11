@@ -54,7 +54,7 @@ public class MergeCommand implements CommandExecutor {
 						ItemStack i2 = Helper.getSlot(player, i2index - 1);
 						if (i2 != null) {
 							if (CompatibilityChecker.isMergeable(base, i1, i2)) {
-								ItemStack mergedItem = ItemMerger.merge(i1, i2);
+								ItemStack mergedItem = ItemMerger.merge(i1, i2, base.levelLimits);
 								player.getInventory().setItem(i1index - 1, mergedItem);
 								player.getInventory().clear(i2index - 1);
 								player.sendMessage(ChatColor.GREEN + "Items merged");
