@@ -1,0 +1,18 @@
+prefixes:
+  enabled: true
+  default-prefix: '&b'
+
+rules-reminder:
+  enabled: true
+  message: '&l&c[RULES] &cThe rules have changed. Please inform yourself!'
+  version: 1
+
+mailbox-reminder:
+  enabled: true
+  message: '&bYou have items in your mailbox chest'
+
+homes:
+  enabled: true
+
+webpw:
+  enabled: true

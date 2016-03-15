@@ -1,0 +1,32 @@
+name: ${project.name}
+author: teamalpha5441
+version: ${project.version}
+description: ${project.description}
+main: ${project.groupId}.${project.name}
+depend: [TADB]
+softdepend: [Prefixer]
+
+commands:
+  home:
+    description: Teleports you home
+    usage: /<command>
+    permission: users.home.tp
+  sethome:
+    description: Sets your home location
+    usage: /<command>
+    permission: users.home.set
+  webpw:
+    description: Sets your web password
+    usage: /<command> <password>
+    permission: users.webpw
+    
+permissions:
+  users.home.tp:
+    description: Allows you to teleport you home
+  users.home.set:
+    description: Allows you to set your home location
+  users.webpw:
+    description: Allows you to set your web password
+  users.userinfo:
+    description: Allows you to view user info
+    default: op
