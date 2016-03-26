@@ -7,6 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import me.teamalpha5441.mcplugins.admintools.StaticVars;
+
 public class UnHideCommand implements CommandExecutor {
 	
 	private final HidePluginPart pluginPart;
@@ -29,7 +31,7 @@ public class UnHideCommand implements CommandExecutor {
 				sender.sendMessage(ChatColor.YELLOW + "You are already visible");
 			}
 		} else {
-			sender.sendMessage(ChatColor.RED + "You must be a player");
+			sender.sendMessage(StaticVars.MESSAGE_MUST_BE_PLAYER);
 		}
 		return true;
 	}
