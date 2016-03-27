@@ -1,0 +1,15 @@
+name: ${project.name}
+author: teamalpha5441
+version: ${project.version}
+description: ${project.description}
+main: ${project.groupId}.${project.name}
+
+commands:
+  imgmap:
+    description: Renders an image to maps
+    usage: /<command> <url> <fill> [max WxH]
+    permission: imagemaps.create
+
+permissions:
+  imagemaps.create:
+    default: op
