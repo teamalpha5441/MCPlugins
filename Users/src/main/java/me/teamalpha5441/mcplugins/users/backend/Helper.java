@@ -70,11 +70,14 @@ public class Helper {
 	}
 
 	public static String locationToString(Location location, boolean saveYaw) {
-		return location.getWorld().getName() + ":" +
+		String locationString = location.getWorld().getName() + ":" +
 				location.getBlockX() + ":" + 
 				location.getBlockY() + ":" +
-				location.getBlockZ() + ":" +
-				yawToString(location.getYaw());
+				location.getBlockZ();
+		if (saveYaw) {
+			locationString += ":" + yawToString(location.getYaw());
+		}
+		return locationString;
 	}
 
 	public static Location locationFromString(String locationString) {
