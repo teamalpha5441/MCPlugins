@@ -19,6 +19,10 @@ commands:
     description: Sets your web password
     usage: /<command> <password>
     permission: users.webpw
+  mailbox:
+    description: Open a players mailbox
+    usage: /<command> <player>
+    permission: users.mailbox
     
 permissions:
   users.home.tp:
@@ -27,6 +31,5 @@ permissions:
     description: Allows you to set your home location
   users.webpw:
     description: Allows you to set your web password
-  users.userinfo:
-    description: Allows you to view user info
-    default: op
+  users.mailbox:
+    description: Allows you to open a players mailbox

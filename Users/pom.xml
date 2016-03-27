@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.teamalpha5441.mcplugins.users</groupId>
   <artifactId>Users</artifactId>
-  <version>0.3-SNAPSHOT</version>
+  <version>0.3.1-SNAPSHOT</version>
   <name>Users</name>
   <description>User/Group/Permission/Economy/Chat/Home plugin</description>
 

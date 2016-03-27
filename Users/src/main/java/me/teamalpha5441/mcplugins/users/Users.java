@@ -52,6 +52,7 @@ public class Users extends JavaPlugin {
 				getCommand("home").setExecutor(new HomeCommand(this.backend));
 				getCommand("sethome").setExecutor(new SetHomeCommand(this.backend));
 			}
+			getCommand("mailbox").setExecutor(new MailboxCommand(this.backend));
 
 			// register obsfuscated commands
 			obsfuscatedCommands = new HashMap<String, ObsfuscatedCommand>();
