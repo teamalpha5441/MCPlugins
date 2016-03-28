@@ -1,5 +1,5 @@
-level-cost: 3 # 3 Levels
-wand-item-id: 369 # Blaze Rod
+level-cost: 3
+wand-item: "minecraft:blaze_rod"
 
 # Default: All animals are capturable
 allowed-egg-ids: [ 65, 93, 101, 92, 98, 100, 96, 90, 91, 94, 95, ]

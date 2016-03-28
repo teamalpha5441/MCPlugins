@@ -1,8 +1,10 @@
 package me.teamalpha5441.mcplugins.taeggs;
 
 import java.util.List;
+import java.util.logging.Level;
 
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -14,6 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.HorseInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.SpawnEgg;
@@ -34,35 +37,53 @@ public class TAEggs extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(this, this);
 	}
 	
-	@EventHandler
-	@SuppressWarnings("deprecation")
+	@EventHandler(ignoreCancelled = true)
 	public void onPlayerInteractEntity(PlayerInteractEntityEvent evt) {
 		Player player = evt.getPlayer();
-		Entity entity = evt.getRightClicked();
+		
+		if (evt.getHand() == EquipmentSlot.HAND) {
+			Material inHandMaterial = player.getInventory().getItemInMainHand().getType();
 
-		int wandMaterialID = getConfig().getInt("wand-item-id", 369);
-		Material wandMaterial = Material.getMaterial(wandMaterialID);
-		int levelCost = getConfig().getInt("level-cost", 3);
-		EntityType entityType = entity.getType();
-		Location location = entity.getLocation();
-		List<Integer> allowedEggIDs = getConfig().getIntegerList("allowed-egg-ids");
-
-		if (player.getItemInHand().getType().equals(wandMaterial)) {
+			String wandMaterialName = getConfig().getString("wand-item");
+			Material wandMaterial = Material.getMaterial(wandMaterialName);
 			
-			if (!player.hasPermission("taeggs.capture")) {
-				player.sendMessage(ChatColor.RED + "You don't have the permission to capture mobs");
-			} else if (player.getLevel() < levelCost) {
-				player.sendMessage(ChatColor.RED + "You don't have enough levels to capture mobs");
-			} else if (!integerInList(allowedEggIDs, entityType.getTypeId())) {
-				player.sendMessage(ChatColor.RED + "You cannot capture this entity");
-			} else if (!checkWorldGuard(player, location)) {
-				player.sendMessage(ChatColor.RED + "You cannot capture this mob in it's current region");
-			} else {
+			if (inHandMaterial == wandMaterial) {
+				if (player.getInventory().getItemInOffHand().getType() != Material.AIR) {
+					player.sendMessage(ChatColor.RED + "Your second hand must be empty to capture mobs");
+					return;
+				}
+				
+				if (!player.hasPermission("taeggs.capture")) {
+					player.sendMessage(ChatColor.RED + "You don't have the permission to capture mobs");
+					return;
+				}
+
+				int levelCost = getConfig().getInt("level-cost", 3);
+				boolean isCreative = player.getGameMode().equals(GameMode.CREATIVE);
+				if (player.getLevel() < levelCost && !isCreative) {
+					player.sendMessage(ChatColor.RED + "You don't have enough levels to capture mobs (" + levelCost + " needed)");
+					return;
+				}
+
+				Entity entity = evt.getRightClicked();
+				EntityType entityType = entity.getType();
+				List<Integer> allowedEggIDs = getConfig().getIntegerList("allowed-egg-ids");
+				if (!integerInList(allowedEggIDs, entityType.getTypeId())) {
+					player.sendMessage(ChatColor.RED + "You cannot capture this entity");
+					return;
+				}
+				
+				Location location = entity.getLocation();
+				if (!checkWorldGuard(player, location)) {
+					player.sendMessage(ChatColor.RED + "You cannot capture this mob in it's current region");
+					return;
+				}
+				
 				SpawnEgg spawnEgg = new SpawnEgg(entityType);
 				ItemStack spawnEggStack = spawnEgg.toItemStack(1);
-				World world = entity.getWorld();
+				World world = location.getWorld();
+
 				world.dropItem(location, spawnEggStack);
-				//TODO Play sound
 				if (entity instanceof Horse) {
 					Horse horse = (Horse)entity;
 					HorseInventory horseInv = horse.getInventory();
@@ -87,8 +108,12 @@ public class TAEggs extends JavaPlugin implements Listener {
 						world.dropItem(location, new ItemStack(Material.SADDLE, 1));
 					}
 				}
+				
 				entity.remove();
-				player.setLevel(player.getLevel() - levelCost);
+				//TODO Play sound
+				if (!isCreative) {
+					player.setLevel(player.getLevel() - levelCost);
+				}
 			}
 		}
 	}
