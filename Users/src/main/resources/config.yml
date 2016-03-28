@@ -16,3 +16,8 @@ homes:
 
 webpw:
   enabled: true
+
+economy:
+  enabled: true
+  default-balance: 0
+  # not yet implemented

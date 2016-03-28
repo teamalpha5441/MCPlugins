@@ -19,6 +19,9 @@ public class Config {
 
 	public boolean WebPw_Enabled;
 
+	public boolean Economy_Enabled; //not yet implemented
+	public long Economy_DefaultBalance; //not yet implemented
+
 	public Config(FileConfiguration fC) {
 		Prefixes_Enabled = fC.getBoolean("prefixes.enabled");
 		if (Prefixes_Enabled) {
@@ -44,5 +47,8 @@ public class Config {
 		Homes_Enabled = fC.getBoolean("homes.enabled");
 
 		WebPw_Enabled = fC.getBoolean("webpw.enabled");
+
+		Economy_Enabled = fC.getBoolean("economy.enabled");
+		Economy_DefaultBalance = fC.getLong("economy.default-balance");
 	}
 }
