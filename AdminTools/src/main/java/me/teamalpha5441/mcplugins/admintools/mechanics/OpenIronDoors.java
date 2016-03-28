@@ -1,7 +1,7 @@
 package me.teamalpha5441.mcplugins.admintools.mechanics;
 
-import org.bukkit.Effect;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
@@ -27,15 +27,19 @@ public class OpenIronDoors implements Listener {
 							block = block.getRelative(BlockFace.DOWN);
 						}
 					}
-					openCloseDoor(block);
+					// Toggle open/close bit
+					block.setData((byte)(block.getData() ^ 0x4));
+					// Play sound effect
+					Sound doorSound;
+					boolean isOpenNow = (block.getData() & 0x4) > 0;
+					if (block.getType() == Material.IRON_DOOR_BLOCK) {
+						doorSound = isOpenNow ? Sound.BLOCK_IRON_DOOR_OPEN : Sound.BLOCK_IRON_DOOR_CLOSE;
+					} else {
+						doorSound = isOpenNow ? Sound.BLOCK_IRON_TRAPDOOR_OPEN : Sound.BLOCK_IRON_TRAPDOOR_CLOSE;
+					}
+					block.getWorld().playSound(block.getLocation(), doorSound, 1f, 1f);
 				}
 			}
 		}
-	}
-	
-	@SuppressWarnings("deprecation")
-	private void openCloseDoor(Block block) {
-		block.setData((byte)(block.getData() ^ 0x4));
-		block.getWorld().playEffect(block.getLocation(), Effect.DOOR_TOGGLE, 0);
 	}
 }
