@@ -19,6 +19,7 @@ public class Users extends JavaPlugin {
 	public Backend backend;
 	public Config config;
 
+	PermsMetasManager permsMetasManager;
 	PrefixManager prefixManager;
 
 	private DatabaseManager databaseManager;
@@ -42,6 +43,10 @@ public class Users extends JavaPlugin {
 				} else {
 					getLogger().log(Level.WARNING, "Prefixer not found, prefixes disabled!");
 				}
+			}
+
+			if (this.config.Permissions_Enabled) {
+				this.permsMetasManager = new PermsMetasManager(this);
 			}
 
 			// register events
@@ -86,6 +91,7 @@ public class Users extends JavaPlugin {
 	public void onDisable() {
 		this.databaseManager = null;
 		this.backend = null;
+		this.permsMetasManager = null;
 		this.prefixManager = null;
 	}
 }

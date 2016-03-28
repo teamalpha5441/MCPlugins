@@ -22,8 +22,16 @@ public class Backend {
 	public static final String FIELD_USERS_RULES_VERSION = "rules_version";
 	public static final String FIELD_USERS_WEB_PASSWORD = "web_pw";
 
+	// private static final String FIELD_TARGETS_ID = "id";
+	// private static final String FIELD_TARGETS_TYPE = "type";
+	// private static final String FIELD_TARGETS_PLAYER_UUID = "player_uuid";
+
 	private static final String TABLE_PREFIX = "users_";
 	private static final String TABLE_USERS = TABLE_PREFIX + "users";
+	// private static final String TABLE_TARGETS = TABLE_PREFIX + "targets";
+	// private static final String TABLE_TARGET_INHERITANCES = TABLE_PREFIX + "target_inheritances";
+	// private static final String TABLE_PERMISSIONS = TABLE_PREFIX + "permissions";
+	// private static final String TABLE_METAS = TABLE_PREFIX + "metas";
 
 	private final DatabaseManager databaseManager;
 	private final Logger logger;
@@ -53,6 +61,7 @@ public class Backend {
 		String playerUUID = player.getUniqueId().toString();
 		if (!userExists(db, playerUUID)) {
 			db.executeUpdate("INSERT INTO " + TABLE_USERS + " (" + FIELD_USERS_UUID + ") VALUES (?)", playerUUID);
+			// db.executeUpdate("INSERT INTO " + TABLE_TARGETS + " (" + FIELD_TARGETS_TYPE + ", " + FIELD_TARGETS_PLAYER_UUID + ") VALUES (0, ?)",	playerUUID);
 		}
 		db.close();
 	}
@@ -73,4 +82,16 @@ public class Backend {
 			db.close();
 		}
 	}
+
+	/*
+	public int targetFromUser(OfflinePlayer player) {
+		Database db = this.databaseManager.getDatabase(this.logger);
+		String playerUUID = player.getUniqueId().toString();
+		try {
+			return (int)(long)db.executeQueryScalar("SELECT " + FIELD_TARGETS_ID + " FROM " + TABLE_TARGETS, playerUUID);
+		} finally {
+			db.close();
+		}
+	}
+	*/
 }

@@ -16,3 +16,7 @@ homes:
 
 webpw:
   enabled: true
+
+permissions:
+  enabled: true
+  # not yet implemented

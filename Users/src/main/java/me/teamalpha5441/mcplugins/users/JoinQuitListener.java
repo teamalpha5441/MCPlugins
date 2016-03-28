@@ -74,6 +74,13 @@ public class JoinQuitListener implements Listener {
 				}
 			}
 
+			/*
+			if (base.permsMetasManager != null) {
+				player.setOp(false);
+				base.permsMetasManager.setPermissions(player);
+			}
+			*/
+
 			// Save player login time (needed for computing play time)
 			loginTimes.put(player.getUniqueId(), Helper.getUnixTime());
 		} catch (Exception ex) {
@@ -85,6 +92,12 @@ public class JoinQuitListener implements Listener {
 	public void onPlayerQuit(PlayerQuitEvent evt) {
 		Player player = evt.getPlayer();
 		try {
+			/*
+			if (base.permsMetasManager != null) {
+				base.permsMetasManager.removePermissions(player);
+			}
+			*/
+
 			// Save last location
 			String locationString = Helper.locationToString(player.getLocation(), true);
 			base.backend.usersSetField(player, Backend.FIELD_USERS_LAST_LOCATION, locationString);

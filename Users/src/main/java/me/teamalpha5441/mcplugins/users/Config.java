@@ -19,6 +19,8 @@ public class Config {
 
 	public boolean WebPw_Enabled;
 
+	public boolean Permissions_Enabled;
+
 	public Config(FileConfiguration fC) {
 		Prefixes_Enabled = fC.getBoolean("prefixes.enabled");
 		if (Prefixes_Enabled) {
@@ -44,5 +46,7 @@ public class Config {
 		Homes_Enabled = fC.getBoolean("homes.enabled");
 
 		WebPw_Enabled = fC.getBoolean("webpw.enabled");
+
+		Permissions_Enabled = fC.getBoolean("permissions.enabled");
 	}
 }
