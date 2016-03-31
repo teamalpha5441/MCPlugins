@@ -18,7 +18,8 @@ public class RealTime extends JavaPlugin implements Runnable {
 	
 	@Override
 	public void onEnable() {
-		this.taskID = getServer().getScheduler().scheduleSyncRepeatingTask(this, this, 0, 72);
+		int taskDelay = getConfig().getInt("task-delay", 72);
+		this.taskID = getServer().getScheduler().scheduleSyncRepeatingTask(this, this, 0, taskDelay);
 		if (this.taskID < 0) {
 			throw new RuntimeException("Couldn't start task");
 		}
