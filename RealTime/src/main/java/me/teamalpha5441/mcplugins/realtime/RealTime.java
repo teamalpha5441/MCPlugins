@@ -1,6 +1,6 @@
 package me.teamalpha5441.mcplugins.realtime;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import org.bukkit.World;
@@ -42,10 +42,10 @@ public class RealTime extends JavaPlugin implements Runnable {
 
 	@Override
 	public void run() {
-		Date currentTime = new Date();
-		float realHours = currentTime.getHours();
-		realHours += currentTime.getMinutes() / 60f;
-		realHours += currentTime.getSeconds() / 3600f;
+		Calendar calendar = Calendar.getInstance();
+		float realHours = calendar.get(Calendar.HOUR_OF_DAY);
+		realHours += calendar.get(Calendar.MINUTE) / 60f;
+		realHours += calendar.get(Calendar.SECOND) / 3600f;
 		int mcTime = (int)(realHours * 1000 + 0.5f) - 6000;
 		if (mcTime < 0) {
 			mcTime += 24000;
