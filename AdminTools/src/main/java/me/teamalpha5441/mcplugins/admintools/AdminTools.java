@@ -23,7 +23,6 @@ public class AdminTools extends JavaPlugin {
 		getCommand("ignite").setExecutor(new IgniteCommand());
 		getCommand("inventory").setExecutor(new InventoryCommand());
 		getCommand("launch").setExecutor(new LaunchCommand());
-		getCommand("online").setExecutor(new OnlineCommand());
 		getCommand("poison").setExecutor(new PoisonCommand());
 		getCommand("sword").setExecutor(new SwordCommand());
 		getCommand("xreload").setExecutor(new XReloadCommand(this));

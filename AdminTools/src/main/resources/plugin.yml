@@ -49,10 +49,6 @@ commands:
     description: Launches a player into sky
     usage: /<command> [player]
     permission: admintools.commands.launch
-  online:
-    descriptions: Lists all online players
-    usage: /<command>
-    permission: admintools.commands.online
   poison:
     description: Poisons a player
     usage: /<command> [player]
