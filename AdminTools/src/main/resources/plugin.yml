@@ -57,6 +57,10 @@ commands:
     description: Poisons a player
     usage: /<command> [player]
     permission: admintools.commands.poison
+  sword:
+    description: Gives you Elucidator
+    usage: /<command> [player]
+    permission: admintools.commands.sword
   xreload:
     description: Broadcasts a warning, saves all data and reloads the server
     usage: /<command>
@@ -99,6 +103,8 @@ permissions:
   admintools.commands.launch:
     default: op
   admintools.commands.poison:
+    default: op
+  admintools.commands.sword:
     default: op
   admintools.commands.hide:
     default: op

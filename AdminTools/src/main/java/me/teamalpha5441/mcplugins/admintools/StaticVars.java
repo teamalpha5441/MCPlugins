@@ -17,4 +17,5 @@ public class StaticVars {
 	public static final String MESSAGE_HEALTH_RESTORED = ChatColor.GREEN + "Health restored";
 	public static final String MESSAGE_YOU_CAN_FLY_NOW = ChatColor.GREEN + "You can fly now";
 	public static final String MESSAGE_YOU_CANNOT_FLY_ANYMORE = ChatColor.YELLOW + "You cannot fly anymore";
+	public static final String MESSAGE_ITS_DANGEROUS_TO_GO_ALONE = ChatColor.GREEN + "It's dangerous to go alone! Take this.";
 }
