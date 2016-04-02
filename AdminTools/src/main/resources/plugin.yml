@@ -64,11 +64,11 @@ commands:
   xreload:
     description: Broadcasts a warning, saves all data and reloads the server
     usage: /<command>
-    permission: bukkit.command.reload
+    permission: admintools.commands.xreload
   xstop:
     description: Broadcasts a warning and stops the server
     usage: /<command>
-    permission: bukkit.command.stop
+    permission: admintools.commands.xstop
     
   hide:
     description: Hides you from all players
@@ -109,6 +109,10 @@ permissions:
   admintools.commands.hide:
     default: op
   admintools.commands.hide:
+    default: op
+  admintools.commands.xreload:
+    default: op
+  admintools.commands.xstop:
     default: op
   admintools.mechanics.open-iron-doors:
     default: op
