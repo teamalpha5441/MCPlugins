@@ -1,7 +1,6 @@
 package me.teamalpha5441.mcplugins.admintools.hide;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,9 +25,9 @@ public class UnHideCommand implements CommandExecutor {
 				for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
 					onlinePlayer.showPlayer(player);
 				}
-				sender.sendMessage(ChatColor.GREEN + "You are now visible");
+				sender.sendMessage(StaticVars.MESSAGE_NOW_VISIBLE);
 			} else {
-				sender.sendMessage(ChatColor.YELLOW + "You are already visible");
+				sender.sendMessage(StaticVars.MESSAGE_ALREADY_VISIBLE);
 			}
 		} else {
 			sender.sendMessage(StaticVars.MESSAGE_MUST_BE_PLAYER);

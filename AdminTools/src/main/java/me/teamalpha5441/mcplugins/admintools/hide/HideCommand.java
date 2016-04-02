@@ -1,7 +1,6 @@
 package me.teamalpha5441.mcplugins.admintools.hide;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,9 +25,9 @@ public class HideCommand implements CommandExecutor {
 				for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
 					onlinePlayer.hidePlayer(player);
 				}
-				sender.sendMessage(ChatColor.GREEN + "You are now hidden");
+				sender.sendMessage(StaticVars.MESSAGE_NOW_HIDDEN);
 			} else {
-				sender.sendMessage(ChatColor.YELLOW + "You are already hidden");
+				sender.sendMessage(StaticVars.MESSAGE_ALREADY_HIDDEN);
 			}
 		} else {
 			sender.sendMessage(StaticVars.MESSAGE_MUST_BE_PLAYER);

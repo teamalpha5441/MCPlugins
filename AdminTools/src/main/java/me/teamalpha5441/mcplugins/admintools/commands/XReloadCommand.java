@@ -1,12 +1,12 @@
 package me.teamalpha5441.mcplugins.admintools.commands;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 
 import me.teamalpha5441.mcplugins.admintools.AdminTools;
 import me.teamalpha5441.mcplugins.admintools.NoArgCommand;
+import me.teamalpha5441.mcplugins.admintools.StaticVars;
 
 public class XReloadCommand extends NoArgCommand {
 
@@ -19,19 +19,17 @@ public class XReloadCommand extends NoArgCommand {
 	@Override
 	public void onNoArgCommand(CommandSender sender) {
 		final Server server = base.getServer();
-		server.broadcastMessage(ChatColor.LIGHT_PURPLE + "[Server] " + ChatColor.YELLOW + "Reloading server in 3 seconds, please prepare and reconnect if you disconnect.");
+		server.broadcastMessage(StaticVars.MESSAGE_XRELOAD_WARNING);
 		final Runnable reloadRunnable = new Runnable() {
 			@Override
 			public void run() {
 				for (World world : server.getWorlds()) {
 					world.save();
-					sender.sendMessage(ChatColor.AQUA + "World \"" + world.getName() + "\" saved");
 				}
 				server.savePlayers();
-				sender.sendMessage(ChatColor.AQUA + "All player data saved");
-				sender.sendMessage(ChatColor.AQUA + "Reloading now");
+				sender.sendMessage(StaticVars.MESSAGE_DATA_SAVED_RELOADING_NOW);
 				server.reload();
-				server.broadcastMessage(ChatColor.LIGHT_PURPLE + "[Server] " + ChatColor.GREEN + "Reloading has finished, thank you for your patience!");
+				server.broadcastMessage(StaticVars.MESSAGE_XRELOAD_FINISHED);
 			}
 		}; 
 		server.getScheduler().scheduleSyncDelayedTask(base, reloadRunnable, 3 * 20);
