@@ -32,7 +32,7 @@ public class ImageMaps extends JavaPlugin implements Listener {
 			String imageFileName = imageFile.getName();
 			// extract ID from file name (e.g. mapimg_123.png")
 			short mapId = Short.parseShort(imageFileName.substring(7, imageFileName.length() - 4));
-			getLogger().log(Level.INFO, "Loading iamge for map " + mapId + "...");
+			// getLogger().log(Level.INFO, "Loading image for map " + mapId + "...");
 			
 			MapView map = Bukkit.getServer().getMap(mapId);
 			try {
