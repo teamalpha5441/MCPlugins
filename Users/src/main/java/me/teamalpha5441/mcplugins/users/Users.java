@@ -23,6 +23,7 @@ public class Users extends JavaPlugin {
 
 	private DatabaseManager databaseManager;
 	private HashMap<String, ObsfuscatedCommand> obsfuscatedCommands;
+	private AfkKicker afkKicker;
 
 	@Override
 	public void onLoad() {
@@ -59,6 +60,10 @@ public class Users extends JavaPlugin {
 			if (this.config.WebPw_Enabled) {
 				obsfuscatedCommands.put("webpw", new WebPwCommand(this.backend));
 			}
+
+			// initialize afkKicker
+			this.afkKicker = new AfkKicker(this, this.config.AfkKicker_MaxIdleSeconds);
+			this.afkKicker.start();
 		} else {
 			getLogger().log(Level.SEVERE, "Couldn't get DatabaseManager");
 			getServer().getPluginManager().disablePlugin(this);
@@ -87,5 +92,7 @@ public class Users extends JavaPlugin {
 		this.databaseManager = null;
 		this.backend = null;
 		this.prefixManager = null;
+		this.afkKicker.stop();
+		this.afkKicker = null;
 	}
 }

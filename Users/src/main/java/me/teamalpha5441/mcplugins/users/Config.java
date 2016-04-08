@@ -15,6 +15,8 @@ public class Config {
 	public boolean MailboxReminder_Enabled;
 	public String MailboxReminder_Message;
 
+	public int AfkKicker_MaxIdleSeconds;
+
 	public boolean Homes_Enabled;
 
 	public boolean WebPw_Enabled;
@@ -40,6 +42,8 @@ public class Config {
 		if (MailboxReminder_Enabled) {
 			MailboxReminder_Message = ChatColor.translateAlternateColorCodes('&', fC.getString("mailbox-reminder.message"));
 		}
+
+		AfkKicker_MaxIdleSeconds = fC.getInt("afk-kicker.max-idle-seconds");
 
 		Homes_Enabled = fC.getBoolean("homes.enabled");
 

@@ -11,6 +11,9 @@ mailbox-reminder:
   enabled: true
   message: '&bYou have items in your mailbox chest'
 
+afk-kicker:
+  max-idle-seconds: 300
+
 homes:
   enabled: true
 
