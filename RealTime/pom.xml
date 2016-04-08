@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.teamalpha5441.mcplugins.realtime</groupId>
   <artifactId>RealTime</artifactId>
-  <version>0.1.1-SNAPSHOT</version>
+  <version>0.2-SNAPSHOT</version>
   <name>RealTime</name>
   <description>Reflect real time in minecraft worlds</description>
 
@@ -23,6 +23,11 @@
       <artifactId>bukkit</artifactId>
       <version>1.9-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.9.3</version>
     </dependency>
   </dependencies>
   
@@ -46,6 +51,19 @@
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>2.4.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

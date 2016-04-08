@@ -1,7 +1,7 @@
 package me.teamalpha5441.mcplugins.realtime;
 
-import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -10,12 +10,13 @@ public class RealTime extends JavaPlugin implements Runnable {
 
 	private int taskID;
 	private World[] worlds;
-	
+	private TimeCorrelator timeCorrelator;
+
 	@Override
 	public void onLoad() {
 		saveDefaultConfig();
 	}
-	
+
 	@Override
 	public void onEnable() {
 		int taskDelay = getConfig().getInt("task-delay", 72);
@@ -23,7 +24,7 @@ public class RealTime extends JavaPlugin implements Runnable {
 		if (this.taskID < 0) {
 			throw new RuntimeException("Couldn't start task");
 		}
-		
+
 		List<String> strWorlds = getConfig().getStringList("worlds");
 		if (strWorlds != null) {
 			this.worlds = new World[strWorlds.size()];
@@ -34,8 +35,21 @@ public class RealTime extends JavaPlugin implements Runnable {
 		} else {
 			throw new RuntimeException("Couldn't retrieve worlds from config");
 		}
+		
+		String timeZoneString = getConfig().getString("timezone");
+		TimeZone timeZone = null;
+		if (timeZoneString != null) {
+			timeZone = TimeZone.getTimeZone(timeZoneString);
+		}
+		
+		String correlatorType = getConfig().getString("correlator-type", "simple");
+		if (correlatorType.equals("simple")) {
+			this.timeCorrelator = new SimpleTimeCorrelator(timeZone);
+		} else if (correlatorType.equals("complex")) {
+			throw new RuntimeException("ComplexTimeCorrelator not yet supported");
+		}
 	}
-	
+
 	@Override
 	public void onDisable() {
 		getServer().getScheduler().cancelTask(this.taskID);
@@ -43,17 +57,8 @@ public class RealTime extends JavaPlugin implements Runnable {
 
 	@Override
 	public void run() {
-		Calendar calendar = Calendar.getInstance();
-		float realHours = calendar.get(Calendar.HOUR_OF_DAY);
-		realHours += calendar.get(Calendar.MINUTE) / 60f;
-		realHours += calendar.get(Calendar.SECOND) / 3600f;
-		int mcTime = (int)(realHours * 1000 + 0.5f) - 6000;
-		if (mcTime < 0) {
-			mcTime += 24000;
-		}
-		
 		for (World world : worlds) {
-			world.setFullTime(mcTime);
+			world.setFullTime(this.timeCorrelator.getMinecraftTime());
 		}
 	}
 }
