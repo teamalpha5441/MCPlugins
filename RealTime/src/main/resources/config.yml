@@ -8,3 +8,9 @@ timezone: null
 // type "complex" calculates the minecraft times for real
 // sunrise and sunset and interpolates the minecraft time inbetween
 correlator-type: simple
+
+// only needed for complex correlator
+// default location is Innsbruck, Austria
+location:
+  latitude: 47.26266
+  longitude: 11.39454
