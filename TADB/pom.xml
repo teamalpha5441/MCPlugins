@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.teamalpha5441.mcplugins.tadb</groupId>
   <artifactId>TADB</artifactId>
-  <version>0.5-SNAPSHOT</version>
+  <version>0.5.1-SNAPSHOT</version>
   <name>TADB</name>
   <description>MariaDB database wrapper and connection pool</description>
 
@@ -27,13 +27,13 @@
     <dependency>
 	  <groupId>org.mariadb.jdbc</groupId>
 	  <artifactId>mariadb-java-client</artifactId>
-	  <version>1.2.3</version>
+	  <version>1.4.2</version>
 	  <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.zaxxer</groupId>
       <artifactId>HikariCP</artifactId>
-      <version>2.4.1</version>
+      <version>2.4.5</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
