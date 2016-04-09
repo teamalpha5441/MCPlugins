@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.teamalpha5441.mcplugins.realtime</groupId>
   <artifactId>RealTime</artifactId>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.2.1-SNAPSHOT</version>
   <name>RealTime</name>
   <description>Reflect real time in minecraft worlds</description>
 

@@ -1,10 +1,10 @@
 task-delay: 60
 worlds: []
 
-// use null for system default timezone
+# use null for system default timezone
 timezone: null
 
-// type "simple" only correlates real time and minecraft time
-// type "complex" calculates the minecraft times for real
-// sunrise and sunset and interpolates the minecraft time inbetween
+# type "simple" only correlates real time and minecraft time
+# type "complex" calculates the minecraft times for real
+# sunrise and sunset and interpolates the minecraft time inbetween
 correlator-type: simple
