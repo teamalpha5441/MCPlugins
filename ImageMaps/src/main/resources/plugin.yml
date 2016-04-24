@@ -6,10 +6,10 @@ main: ${project.groupId}.${project.name}
 
 commands:
   imgmap:
-    description: Renders an image to maps
-    usage: /<command> <url> <max WxH> <fill>
-    permission: imagemaps.create
+    description: ImageMaps control command
+    usage: /<command> <help>
+    permission: imagemaps.command
 
 permissions:
-  imagemaps.create:
+  imagemaps.command:
     default: op

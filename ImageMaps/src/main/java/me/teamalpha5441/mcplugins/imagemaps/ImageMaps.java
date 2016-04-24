@@ -9,10 +9,8 @@ import java.util.logging.Level;
 import javax.imageio.ImageIO;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.event.Listener;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.map.MapRenderer;
 import org.bukkit.map.MapView;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -59,10 +57,9 @@ public class ImageMaps extends JavaPlugin implements Listener {
 	}
 
 	@SuppressWarnings("deprecation")
-	ItemStack[] createMaps(LoadedImage loadedImage) throws IOException {
+	short createMaps(LoadedImage loadedImage) throws IOException {
 		World world = Bukkit.getWorlds().get(0); // get main world
 		BufferedImage[] images = loadedImage.getImages();
-		ItemStack[] maps = new ItemStack[images.length];
 
 		// create first map
 		MapView firstMap = Bukkit.getServer().createMap(world);
@@ -80,11 +77,24 @@ public class ImageMaps extends JavaPlugin implements Listener {
 
 			File imageFile = new File(getDataFolder(), "image_" + map.getId() + ".png");
 			ImageIO.write(images[i], "PNG", imageFile);
-
-			maps[i] = new ItemStack(Material.MAP);
-			maps[i].setDurability(map.getId());
 		}
 
-		return maps;
+		return firstMap.getId();
+	}
+
+	void deleteMaps(short ID) throws IOException {
+		String cfgBase = "images." + ID;
+		int w = getConfig().getInt(cfgBase + ".w");
+		int h = getConfig().getInt(cfgBase + ".h");
+
+		getConfig().set(cfgBase, null);
+		saveConfig();
+
+		for (int i = 0; i < w * h; i++) {
+			int currentID = ID + i;
+
+			File imageFile = new File(getDataFolder(), "image_" + currentID + ".png");
+			imageFile.delete();
+		}
 	}
 }

@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.teamalpha5441.mcplugins.imagemaps</groupId>
   <artifactId>ImageMaps</artifactId>
-  <version>0.3.1-SNAPSHOT</version>
+  <version>0.3.2-SNAPSHOT</version>
   <name>ImageMaps</name>
   <description>Create maps with custom images</description>
 
