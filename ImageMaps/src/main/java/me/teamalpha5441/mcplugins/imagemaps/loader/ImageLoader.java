@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 public class ImageLoader {
 
 	//TODO Background color support
-	public static LoadedImage loadImages(URL imageUrl, int maxWidth, int maxHeight, boolean fill) throws IOException {
+	public static LoadedImage loadImage(URL imageUrl, int maxWidth, int maxHeight, boolean fill) throws IOException {
 		BufferedImage fullSizeImage = ImageIO.read(imageUrl);
 
 		// Calculate new image size so the image can fit on maxWidth x maxHeight

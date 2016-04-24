@@ -59,7 +59,7 @@ public class ImgMapCommand implements CommandExecutor {
 				boolean fill = Boolean.parseBoolean(args[2]);
 
 				try {
-					LoadedImage loadedImage = ImageLoader.loadImages(imageURL, maxWidth, maxHeight, fill);
+					LoadedImage loadedImage = ImageLoader.loadImage(imageURL, maxWidth, maxHeight, fill);
 					ItemStack[] maps = base.createMaps(loadedImage);
 					player.getInventory().addItem(maps);
 				} catch (IOException ex) {
