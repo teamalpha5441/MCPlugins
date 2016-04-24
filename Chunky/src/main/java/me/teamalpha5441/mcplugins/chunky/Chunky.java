@@ -14,12 +14,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Chunky extends JavaPlugin implements Listener {
 
 	private List<String> worlds;
-	
+
 	@Override
 	public void onLoad() {
 		saveDefaultConfig();
 	}
-	
+
 	@Override
 	public void onEnable() {
 		this.worlds = getConfig().getStringList("worlds");
@@ -40,12 +40,12 @@ public class Chunky extends JavaPlugin implements Listener {
 			getServer().getPluginManager().registerEvents(new DebugListener(getLogger()), this);
 		}
 	}
-	
+
 	@Override
 	public void onDisable() {
 		this.worlds.clear();
 	}
-	
+
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onChunkUnload(ChunkUnloadEvent evt) {
 		for (String worldName : this.worlds) {

@@ -11,7 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Prefixer extends JavaPlugin implements Listener {
 
 	private PrefixManager prefixManager;
-	
+
 	@Override
 	public void onEnable() {
 		this.prefixManager = new PrefixManager();
@@ -21,18 +21,18 @@ public class Prefixer extends JavaPlugin implements Listener {
 		getServer().getServicesManager().register(PrefixManager.class, this.prefixManager, this, ServicePriority.Normal);
 		getServer().getPluginManager().registerEvents(this, this);
 	}
-	
+
 	@Override
 	public void onDisable() {
 		getServer().getServicesManager().unregister(this.prefixManager);
 		this.prefixManager = null;
 	}
-	
+
 	@EventHandler
 	public void onPlayerJoinEvent(PlayerJoinEvent evt) {
 		this.prefixManager.managePlayer(evt.getPlayer());
 	}
-	
+
 	@EventHandler
 	public void onPlayerQuitEvent(PlayerQuitEvent evt) {
 		this.prefixManager.unmanagePlayer(evt.getPlayer());

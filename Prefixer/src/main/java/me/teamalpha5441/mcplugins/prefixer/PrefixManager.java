@@ -10,11 +10,11 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 public class PrefixManager {
-	
+
 	private final Scoreboard scoreboard;
 	private final HashMap<UUID, String> lowPriorityPrefixes;
 	private final HashMap<UUID, String> prefixes;
-	
+
 	PrefixManager() {
 		this.scoreboard = Bukkit.getServer().getScoreboardManager().getNewScoreboard();
 		this.lowPriorityPrefixes = new HashMap<UUID, String>();
@@ -24,7 +24,7 @@ public class PrefixManager {
 	public void managePlayer(Player player) {
 		player.setScoreboard(this.scoreboard);
 	}
-	
+
 	public void unmanagePlayer(Player player) {
 		UUID uuid = player.getUniqueId();
 		this.lowPriorityPrefixes.remove(uuid);
@@ -38,20 +38,20 @@ public class PrefixManager {
 		this.lowPriorityPrefixes.put(uuid, prefix);
 		updatePlayerPrefix(player);
 	}
-	
+
 	public void setPrefix(Player player, String prefix) {
 		UUID uuid = player.getUniqueId();
 		prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 		this.prefixes.put(uuid, prefix);
 		updatePlayerPrefix(player);
 	}
-	
+
 	public void removePrefix(Player player) {
 		UUID uuid = player.getUniqueId();
 		this.prefixes.remove(uuid);
 		updatePlayerPrefix(player);
 	}
-	
+
 	public String getCalculatedPrefix(Player player) {
 		UUID uuid = player.getUniqueId();
 		String prefix = this.prefixes.get(uuid);
@@ -65,7 +65,7 @@ public class PrefixManager {
 		}
 		return null;
 	}
-	
+
 	private void updatePlayerPrefix(Player player) {
 		Team currentTeam = this.scoreboard.getEntryTeam(player.getName());
 		if (currentTeam != null) {

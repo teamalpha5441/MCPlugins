@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 public class Helper {
 
 	private static final HashMap<String, Enchantment> _EnchantmentNameMap = new HashMap<String, Enchantment>();
-	
+
 	static {
 		_EnchantmentNameMap.put("protection", Enchantment.PROTECTION_ENVIRONMENTAL);
 		_EnchantmentNameMap.put("fire_protection", Enchantment.PROTECTION_FIRE);
@@ -47,11 +47,11 @@ public class Helper {
 		_EnchantmentNameMap.put("lure", Enchantment.LURE);
 		_EnchantmentNameMap.put("mending", Enchantment.MENDING);
 	}
-	
+
 	public static void giveOrDropItem(Player player, ItemStack stack) {
 		giveOrDropItems(player, new ItemStack[] { stack });
 	}
-	
+
 	public static void giveOrDropItems(Player player, List<ItemStack> stacks) {
 		ItemStack[] array = new ItemStack[stacks.size()];
 		for (int i = 0; i < array.length; i++) {
@@ -59,7 +59,7 @@ public class Helper {
 		}
 		giveOrDropItems(player, array);
 	}
-	
+
 	public static void giveOrDropItems(Player player, ItemStack[] stacks) {
 		HashMap<Integer, ItemStack> notAdded = player.getInventory().addItem(stacks);
 		if (notAdded.size() > 0) {
@@ -78,7 +78,7 @@ public class Helper {
 			if (!stack.getType().equals(Material.AIR)) {
 				if (stack.getAmount() != 0) {
 					return stack;
-				}	
+				}
 			}
 		}
 		return null;
@@ -92,7 +92,7 @@ public class Helper {
 			return I.getEnchantments();
 		}
 	}
-	
+
 	public static void setEnchantments(ItemStack I, Map<Enchantment, Integer> Enchantments) {
 		if (I.getType().equals(Material.ENCHANTED_BOOK)) {
 			EnchantmentStorageMeta meta = (EnchantmentStorageMeta)I.getItemMeta();
@@ -104,7 +104,7 @@ public class Helper {
 			I.addUnsafeEnchantments(Enchantments);
 		}
 	}
-	
+
 	public static void removeEnchantments(ItemStack I) {
 		if (I.getType().equals(Material.ENCHANTED_BOOK)) {
 			EnchantmentStorageMeta meta = (EnchantmentStorageMeta)I.getItemMeta();
@@ -120,7 +120,7 @@ public class Helper {
 			}
 		}
 	}
-	
+
 	public static Enchantment getEnchantmentByName(String name) {
 		return _EnchantmentNameMap.get(name);
 	}

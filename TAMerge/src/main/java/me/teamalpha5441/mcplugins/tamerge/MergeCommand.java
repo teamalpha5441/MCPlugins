@@ -13,13 +13,13 @@ import me.teamalpha5441.mcplugins.tamerge.core.Helper;
 import me.teamalpha5441.mcplugins.tamerge.core.ItemMerger;
 
 public class MergeCommand implements CommandExecutor {
-	
+
 	private TAMerge base;
-	
+
 	public MergeCommand(TAMerge base) {
 		this.base = base;
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!(sender instanceof Player)) {

@@ -10,11 +10,11 @@ import me.teamalpha5441.mcplugins.users.backend.Helper;
 public class WebPwCommand extends ObsfuscatedCommand {
 
 	private final Backend backend;
-	
+
 	public WebPwCommand(Backend backend) {
 		this.backend = backend;
 	}
-	
+
 	@Override
 	public boolean onCommand(Player player, String args) {
 		if (args.length() > 0) {

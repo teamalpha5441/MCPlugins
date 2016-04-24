@@ -25,5 +25,5 @@ public class TextHelper {
 		newstring = chatResetPattern.matcher(newstring).replaceAll("\u00A7$1");
 		newstring = newLinePattern.matcher(newstring).replaceAll("\n");
 		return ampersandPattern.matcher(newstring).replaceAll("&");
-	}	
+	}
 }

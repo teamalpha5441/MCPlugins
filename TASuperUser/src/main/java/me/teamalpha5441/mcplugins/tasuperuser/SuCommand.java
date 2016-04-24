@@ -8,11 +8,11 @@ import org.bukkit.entity.Player;
 public class SuCommand implements CommandExecutor {
 
 	private TASuperUser base;
-	
+
 	public SuCommand(TASuperUser base) {
 		this.base = base;
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!(sender instanceof Player)) {

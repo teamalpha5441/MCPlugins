@@ -9,13 +9,13 @@ import org.bukkit.entity.Player;
 import me.teamalpha5441.mcplugins.admintools.StaticVars;
 
 public class HideCommand implements CommandExecutor {
-	
+
 	private final HidePluginPart pluginPart;
-	
+
 	public HideCommand(HidePluginPart pluginPart) {
 		this.pluginPart = pluginPart;
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (sender instanceof Player) {

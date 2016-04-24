@@ -16,13 +16,13 @@ import me.teamalpha5441.mcplugins.tamerge.core.EnchantmentExtractor;
 import me.teamalpha5441.mcplugins.tamerge.core.Helper;
 
 public class ExtractCommand implements CommandExecutor {
-	
+
 	private TAMerge base;
-	
+
 	public ExtractCommand(TAMerge base) {
 		this.base = base;
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!(sender instanceof Player)) {

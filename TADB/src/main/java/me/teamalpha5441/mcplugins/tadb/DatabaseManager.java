@@ -12,7 +12,7 @@ import com.zaxxer.hikari.HikariDataSource;
 public class DatabaseManager {
 
 	private HikariDataSource dataSource;
-	
+
 	public DatabaseManager(FileConfiguration config, Logger logger) throws SQLException {
 		this.dataSource = new HikariDataSource();
 		this.dataSource.setMinimumIdle(2);
@@ -23,7 +23,7 @@ public class DatabaseManager {
 		this.dataSource.addDataSourceProperty("user", config.getString("mariadb.username"));
 		this.dataSource.addDataSourceProperty("password", config.getString("mariadb.password"));
 		this.dataSource.addDataSourceProperty("databaseName", config.getString("mariadb.database"));
-		
+
 		Database testDatabase = null;
 		try {
 			testDatabase = new Database(this.dataSource.getConnection(), logger);
@@ -51,11 +51,11 @@ public class DatabaseManager {
 			return null;
 		}
 	}
-	
+
 	public Connection getConnection() throws SQLException {
 		return this.dataSource.getConnection();
 	}
-	
+
 	void dispose() {
 		if (this.dataSource != null) {
 			try {

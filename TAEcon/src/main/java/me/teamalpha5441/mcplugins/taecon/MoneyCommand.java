@@ -10,16 +10,16 @@ import org.bukkit.entity.Player;
 public class MoneyCommand implements CommandExecutor {
 
 	private final TAEcon base;
-	
+
 	public MoneyCommand(TAEcon base) {
 		this.base = base;
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	private OfflinePlayer getPlayer(String playerName) {
 		return base.getServer().getOfflinePlayer(playerName);
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (args.length < 1) {
@@ -117,27 +117,27 @@ public class MoneyCommand implements CommandExecutor {
 		}
 		return true;
 	}
-	
+
 	private int parseInt(String s) {
-		try { 
+		try {
 			return Integer.parseInt(s);
 		} catch (NumberFormatException ex) {
 			return 0;
 		}
 	}
-	
+
 	private String formatAmount(int amount) {
 		return "" + ChatColor.YELLOW + amount + " " + ChatColor.AQUA + base.getCurrencyName(amount != 1);
 	}
-	
+
 	private void noPermMessage(CommandSender sender) {
 		sender.sendMessage(ChatColor.RED + "You don't have the permission to use this command");
 	}
-	
+
 	private void errorMessage(CommandSender sender) {
 		sender.sendMessage(ChatColor.RED + "An error occured");
 	}
-	
+
 	private void usage(CommandSender sender) {
 		if (sender instanceof Player) {
 			sender.sendMessage(ChatColor.GREEN + "/money" + ChatColor.RESET + " Gets your account balance");

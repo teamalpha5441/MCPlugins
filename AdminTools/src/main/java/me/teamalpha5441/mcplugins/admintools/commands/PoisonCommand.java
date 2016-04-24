@@ -13,7 +13,7 @@ public class PoisonCommand extends PlayerCommand {
 	@Override
 	public void onPlayerCommand(CommandSender sender, Player player) {
 		PotionEffect effect = new PotionEffect(PotionEffectType.WITHER, Integer.MAX_VALUE, 2);
-		player.addPotionEffect(effect);	
+		player.addPotionEffect(effect);
 		if (sender != player) {
 			sender.sendMessage(StaticVars.MESSAGE_COMMAND_EXECUTED);
 		}

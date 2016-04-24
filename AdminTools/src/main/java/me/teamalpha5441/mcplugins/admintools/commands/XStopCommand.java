@@ -10,7 +10,7 @@ import me.teamalpha5441.mcplugins.admintools.StaticVars;
 public class XStopCommand extends NoArgCommand {
 
 	private final AdminTools base;
-	
+
 	public XStopCommand(AdminTools base) {
 		this.base = base;
 	}
@@ -24,7 +24,7 @@ public class XStopCommand extends NoArgCommand {
 			public void run() {
 				server.shutdown();
 			}
-		}; 
+		};
 		server.getScheduler().scheduleSyncDelayedTask(base, stopRunnable, 3 * 20);
 	}
 }

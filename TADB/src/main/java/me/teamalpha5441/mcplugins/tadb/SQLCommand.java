@@ -14,11 +14,11 @@ import org.bukkit.command.CommandSender;
 class SQLCommand implements CommandExecutor {
 
 	private TADB base;
-	
+
 	public SQLCommand(TADB base) {
 		this.base = base;
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!base.getConfig().getBoolean("enable-sql-command", false)) {
@@ -50,7 +50,7 @@ class SQLCommand implements CommandExecutor {
 			return false;
 		}
 	}
-	
+
 	public static String stringJoin(Collection<?> s, String delimiter) {
 		StringBuilder builder = new StringBuilder();
 		Iterator<?> iter = s.iterator();

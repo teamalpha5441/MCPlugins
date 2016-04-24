@@ -7,12 +7,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class RunAsCommand implements CommandExecutor {
-	
+
 	@SuppressWarnings("deprecation")
 	private Player getPlayerUnsafe(String playerName) {
 		return Bukkit.getServer().getPlayer(playerName);
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (args.length > 1) {

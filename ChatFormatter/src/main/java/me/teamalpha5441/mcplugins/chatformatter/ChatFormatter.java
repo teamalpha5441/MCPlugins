@@ -11,12 +11,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class ChatFormatter extends JavaPlugin implements Listener {
 
 	private volatile String formatString;
-	
+
 	@Override
 	public void onLoad() {
 		saveDefaultConfig();
 	}
-	
+
 	@Override
 	public void onEnable() {
 		this.formatString = getConfig().getString("format-string");
@@ -27,7 +27,7 @@ public class ChatFormatter extends JavaPlugin implements Listener {
 			getLogger().log(Level.WARNING, "No format string defined in config, using default format");
 		}
 	}
-	
+
 	@EventHandler
 	public void onPlayerChatEvent(AsyncPlayerChatEvent evt) {
 		if (this.formatString != null) {

@@ -11,7 +11,7 @@ import me.teamalpha5441.mcplugins.admintools.StaticVars;
 public class XReloadCommand extends NoArgCommand {
 
 	private final AdminTools base;
-	
+
 	public XReloadCommand(AdminTools base) {
 		this.base = base;
 	}
@@ -31,7 +31,7 @@ public class XReloadCommand extends NoArgCommand {
 				server.reload();
 				server.broadcastMessage(StaticVars.MESSAGE_XRELOAD_FINISHED);
 			}
-		}; 
+		};
 		server.getScheduler().scheduleSyncDelayedTask(base, reloadRunnable, 3 * 20);
 	}
 }

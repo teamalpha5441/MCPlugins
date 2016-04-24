@@ -8,10 +8,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Database {
-	
+
 	private Connection _Connection;
 	private Logger _Logger;
-	
+
 	/**
 	 * Creates a new Database instance around a given database connection
 	 * @param connection The database connection
@@ -20,7 +20,7 @@ public class Database {
 		this._Connection = connection;
 		this._Logger = logger;
 	}
-	
+
 	/**
 	 * Gets the inner database connection
 	 * @return The inner database connection
@@ -28,7 +28,7 @@ public class Database {
 	public Connection getConnection() {
 		return _Connection;
 	}
-	
+
 	/**
 	 * Closes the database connection
 	 * Do not reuse this Database instance after calling
@@ -42,7 +42,7 @@ public class Database {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Executes the given SQL select query and returns the ResultSet
 	 * @param SQL The SQL query
@@ -80,7 +80,7 @@ public class Database {
 			return -1;
 		}
 	}
-	
+
 	/**
 	 * Executes the given SQL query and returns the Object in the first row and column of the ResultSet
 	 * @param SQL The SQL query

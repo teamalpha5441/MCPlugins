@@ -11,7 +11,7 @@ public class TAKeepLevels extends JavaPlugin implements Listener {
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(this, this);
 	}
-	
+
 	@EventHandler
 	public void onPlayerDeathEvent(PlayerDeathEvent evt) {
 		if (evt.getEntity().hasPermission("takeeplevels.keep")) {

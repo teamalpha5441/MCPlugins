@@ -28,12 +28,12 @@ public class TAEggs extends JavaPlugin implements Listener {
 	public void onLoad() {
 		saveDefaultConfig();
 	}
-	
+
 	@Override
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(this, this);
 	}
-	
+
 	@EventHandler
 	@SuppressWarnings("deprecation")
 	public void onPlayerInteractEntity(PlayerInteractEntityEvent evt) {
@@ -48,7 +48,7 @@ public class TAEggs extends JavaPlugin implements Listener {
 		List<Integer> allowedEggIDs = getConfig().getIntegerList("allowed-egg-ids");
 
 		if (player.getItemInHand().getType().equals(wandMaterial)) {
-			
+
 			if (!player.hasPermission("taeggs.capture")) {
 				player.sendMessage(ChatColor.RED + "You don't have the permission to capture mobs");
 			} else if (player.getLevel() < levelCost) {
@@ -92,7 +92,7 @@ public class TAEggs extends JavaPlugin implements Listener {
 			}
 		}
 	}
-	
+
 	private boolean integerInList(List<Integer> list, int integer) {
 		for (Integer listInt : list) {
 			if (listInt == integer) {
@@ -101,14 +101,14 @@ public class TAEggs extends JavaPlugin implements Listener {
 		}
 		return false;
 	}
-	
+
 	private boolean checkWorldGuard(Player player, Location location) {
-	    Plugin plugin = getServer().getPluginManager().getPlugin("WorldGuard");
-	    if (plugin != null) {
-	    	if (plugin instanceof WorldGuardPlugin) {
-	    		return ((WorldGuardPlugin)plugin).canBuild(player, location);
-	    	}
-	    }
-	    return true; //No WorldGuard -> Assume that the player is allowed to use TAEggs
+		Plugin plugin = getServer().getPluginManager().getPlugin("WorldGuard");
+		if (plugin != null) {
+			if (plugin instanceof WorldGuardPlugin) {
+				return ((WorldGuardPlugin)plugin).canBuild(player, location);
+			}
+		}
+		return true; //No WorldGuard -> Assume that the player is allowed to use TAEggs
 	}
 }

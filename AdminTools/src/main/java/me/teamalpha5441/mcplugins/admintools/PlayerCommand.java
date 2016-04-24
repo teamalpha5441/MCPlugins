@@ -24,7 +24,7 @@ public abstract class PlayerCommand implements CommandExecutor {
 			} else {
 				sender.sendMessage(StaticVars.MESSAGE_PLAYER_NOT_FOUND);
 			}
-			return true;	
+			return true;
 		} else {
 			sender.sendMessage(StaticVars.MESSAGE_TOO_MUCH_ARGUMENTS);
 			return false;

@@ -3,7 +3,7 @@ package me.teamalpha5441.mcplugins.users;
 import org.bukkit.ChatColor;
 
 public class Constants {
-	
+
 	public static final String MSG_NO_PERMISSION = ChatColor.RED + "You don't have the needed permissions";
 	public static final String MSG_NO_HOME_SET = ChatColor.RED + "No home location set";
 	public static final String MSG_INTERNAL_ERROR = ChatColor.RED + "An internal error occured";

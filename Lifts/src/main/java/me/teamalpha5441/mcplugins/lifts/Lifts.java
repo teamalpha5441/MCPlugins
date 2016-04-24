@@ -19,7 +19,7 @@ public class Lifts extends JavaPlugin implements Listener {
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(this, this);
 	}
-	
+
 	@EventHandler
 	public void onSignChange(SignChangeEvent evt) {
 		if (evt.getLine(1).equals(StaticVars.LIFT_STRING)) {
@@ -32,7 +32,7 @@ public class Lifts extends JavaPlugin implements Listener {
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent evt) {
 		Block block = evt.getClickedBlock();
@@ -64,7 +64,7 @@ public class Lifts extends JavaPlugin implements Listener {
 			}
 		}
 	}
-	
+
 	private boolean findLiftSignAndTeleport(Player player, Sign sign, byte direction) {
 		for (int y = sign.getY() + direction; direction > 0 ? y < 256 : y >= 0; y += direction) {
 			Block currentBlock = sign.getWorld().getBlockAt(sign.getX(), y, sign.getZ());
@@ -88,11 +88,11 @@ public class Lifts extends JavaPlugin implements Listener {
 		}
 		return false;
 	}
-	
+
 	private boolean isSign(Block block) {
 		return block.getType() == Material.WALL_SIGN || block.getType() == Material.SIGN_POST;
 	}
-	
+
 	private boolean allowTeleport(Sign sign, Player player) {
 		if (player.hasPermission(StaticVars.PERM_LIFTS_BYPASS)) {
 			return true;

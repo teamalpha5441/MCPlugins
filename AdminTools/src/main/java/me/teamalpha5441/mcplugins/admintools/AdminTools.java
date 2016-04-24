@@ -7,9 +7,9 @@ import me.teamalpha5441.mcplugins.admintools.hide.*;
 import me.teamalpha5441.mcplugins.admintools.mechanics.*;
 
 public class AdminTools extends JavaPlugin {
-	
+
 	private final HidePluginPart _HidePluginPart = new HidePluginPart();
-	
+
 	@Override
 	public void onEnable() {
 		getCommand("drunk").setExecutor(new DrunkCommand());
@@ -29,11 +29,11 @@ public class AdminTools extends JavaPlugin {
 		getCommand("xstop").setExecutor(new XStopCommand(this));
 
 		_HidePluginPart.onEnable(this);
-		
+
 		getServer().getPluginManager().registerEvents(new ColoredSigns(), this);
 		getServer().getPluginManager().registerEvents(new OpenIronDoors(), this);
 	}
-	
+
 	@Override
 	public void onDisable() {
 		_HidePluginPart.onDisable(this);

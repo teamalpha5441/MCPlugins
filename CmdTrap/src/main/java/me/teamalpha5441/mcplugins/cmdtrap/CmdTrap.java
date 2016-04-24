@@ -12,7 +12,7 @@ public class CmdTrap extends JavaPlugin {
 	public void onLoad() {
 		saveDefaultConfig();
 	}
-	
+
 	@Override
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(new CommandTrap(this), this);
@@ -25,7 +25,7 @@ public class CmdTrap extends JavaPlugin {
 			}
 		}
 	}
-	
+
 	@Override
 	public void onDisable() {
 		if (tabCompletionTrap != null) {

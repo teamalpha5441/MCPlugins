@@ -19,12 +19,12 @@ public class TAMerge extends JavaPlugin {
 	public void onLoad() {
 		saveDefaultConfig();
 	}
-	
+
 	@Override
 	public void onEnable() {
 		cfgCostMerge = getConfig().getInt("cost.merge", cfgCostMerge);
 		cfgCostExtract = getConfig().getInt("cost.extract", cfgCostExtract);
-		
+
 		levelLimits = new HashMap<Enchantment, Integer>();
 		ConfigurationSection levelLimitsSection = getConfig().getConfigurationSection("level_limits");
 		Set<String> enchantmentKeys = levelLimitsSection.getKeys(false);
@@ -32,7 +32,7 @@ public class TAMerge extends JavaPlugin {
 			Enchantment enchantment = Helper.getEnchantmentByName(enchantmentKey);
 			levelLimits.put(enchantment, levelLimitsSection.getInt(enchantmentKey));
 		}
-		
+
 		getCommand("merge").setExecutor(new MergeCommand(this));
 		getCommand("extract").setExecutor(new ExtractCommand(this));
 	}

@@ -12,7 +12,7 @@ public class HidePluginPart extends PluginPart {
 
 	public ArrayList<UUID> _HiddenPlayers = new ArrayList<UUID>();
 	private HideListener _HideListener = new HideListener(this);
-	
+
 	@Override
 	public void onEnable(JavaPlugin plugin) {
 		Bukkit.getPluginManager().registerEvents(_HideListener, plugin);

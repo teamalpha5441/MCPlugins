@@ -12,7 +12,7 @@ import net.milkbowl.vault.economy.Economy;
 public class TAEcon extends JavaPlugin {
 
 	private final ReentrantLock _Lock = new ReentrantLock();
-	
+
 	private int defaultBalance = 0;
 	private String currencySingular = null;
 	private String currencyPlural = null;
@@ -21,7 +21,7 @@ public class TAEcon extends JavaPlugin {
 	public void onLoad() {
 		saveDefaultConfig();
 	}
-	
+
 	@Override
 	public void onEnable() {
 		reloadPlugin();
@@ -32,12 +32,12 @@ public class TAEcon extends JavaPlugin {
 			getLogger().log(Level.INFO, "Hooked into Vault");
 		}
 	}
-	
+
 	@Override
 	public void onDisable() {
 		getServer().getServicesManager().unregisterAll(this);
 	}
-	
+
 	public void reloadPlugin() {
 		_Lock.lock();
 		try {
@@ -49,17 +49,17 @@ public class TAEcon extends JavaPlugin {
 			_Lock.unlock();
 		}
 	}
-	
+
 	public int getBalance(OfflinePlayer Player) {
 		_Lock.lock();
 		try {
 			String playerUUID = Player.getUniqueId().toString();
-			return getConfig().getInt("accounts." + playerUUID, defaultBalance);	
+			return getConfig().getInt("accounts." + playerUUID, defaultBalance);
 		} finally {
 			_Lock.unlock();
 		}
 	}
-	
+
 	public Boolean setBalance(OfflinePlayer Player, int NewBalance) {
 		_Lock.lock();
 		try {
@@ -75,7 +75,7 @@ public class TAEcon extends JavaPlugin {
 			_Lock.unlock();
 		}
 	}
-	
+
 	public Boolean addBalance(OfflinePlayer Player, int Amount) {
 		_Lock.lock();
 		try {
@@ -92,7 +92,7 @@ public class TAEcon extends JavaPlugin {
 			_Lock.unlock();
 		}
 	}
-	
+
 	public Boolean removeBalance(OfflinePlayer Player, int Amount) {
 		_Lock.lock();
 		try {
@@ -113,11 +113,11 @@ public class TAEcon extends JavaPlugin {
 			_Lock.unlock();
 		}
 	}
-	
+
 	public String getCurrencyName(Boolean Plural) {
 		return Plural ? currencyPlural : currencySingular;
 	}
-	
+
 	public Boolean payPlayer(OfflinePlayer Player, OfflinePlayer PaidPlayer, int Amount) {
 		_Lock.lock();
 		try {

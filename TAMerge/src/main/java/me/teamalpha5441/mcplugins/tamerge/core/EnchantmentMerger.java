@@ -9,7 +9,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
 public class EnchantmentMerger {
-	
+
 	public static Map<Enchantment, Integer> merge(Map<Enchantment, Integer> E1, Map<Enchantment, Integer> E2, Material Material, Map<Enchantment, Integer> LevelLimits) {
 		HashMap<Enchantment, Integer> newEnchantments = new HashMap<Enchantment, Integer>();
 		newEnchantments.putAll(E1);
@@ -36,12 +36,12 @@ public class EnchantmentMerger {
 		}
 		return newEnchantments;
 	}
-	
+
 	private static boolean canEnchant(Enchantment E, Material M) {
 		ItemStack tmp = new ItemStack(M, 1);
 		return E.canEnchantItem(tmp);
 	}
-	
+
 	private static boolean conflictsWithSet(Set<Enchantment> set, Enchantment ench) {
 		for (Enchantment sEnch : set) {
 			if (ench.conflictsWith(sEnch)) {

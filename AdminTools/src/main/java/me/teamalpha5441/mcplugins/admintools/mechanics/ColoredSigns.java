@@ -10,7 +10,7 @@ import org.bukkit.event.block.SignChangeEvent;
 import me.teamalpha5441.mcplugins.admintools.StaticVars;
 
 public class ColoredSigns implements Listener {
-	
+
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onSignChange(SignChangeEvent evt) {
 		Player player = evt.getPlayer();

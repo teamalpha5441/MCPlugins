@@ -20,7 +20,7 @@ public class TASuperUser extends JavaPlugin implements Listener {
 		getCommand("runas").setExecutor(new RunAsCommand());
 		getServer().getPluginManager().registerEvents(this, this);
 	}
-	
+
 	public Boolean checkPassword(String password) {
 		List<String> cPasswords = getConfig().getStringList("passwords");
 		for (String cPassword : cPasswords) {
@@ -30,7 +30,7 @@ public class TASuperUser extends JavaPlugin implements Listener {
 		}
 		return false;
 	}
-	
+
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerJoin(PlayerJoinEvent evt) {
 		if (getConfig().getBoolean("deop-on-join", true)) {

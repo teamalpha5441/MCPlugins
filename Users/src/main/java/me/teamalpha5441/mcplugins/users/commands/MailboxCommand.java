@@ -18,11 +18,11 @@ import me.teamalpha5441.mcplugins.users.backend.Helper;
 public class MailboxCommand implements CommandExecutor {
 
 	private final Backend backend;
-	
+
 	public MailboxCommand(Backend backend) {
 		this.backend = backend;
 	}
-	
+
 	@Override
 	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

@@ -14,13 +14,13 @@ public class TabCompletionTrap {
 		"/help ", "/? "
 	};
 	private static final Pattern allowedTabPattern = Pattern.compile("\\/\\S+ .*");
-	
+
 	private final CmdTrap base;
-	
+
 	public TabCompletionTrap(CmdTrap base) {
 		this.base = base;
 	}
-	
+
 	public void enable() {
 		ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(base, PacketType.Play.Client.TAB_COMPLETE) {
 			@Override
@@ -36,7 +36,7 @@ public class TabCompletionTrap {
 			}
 		});
 	}
-	
+
 	private boolean isTabAllowed(String command) {
 		for (int i = 0; i < blockedTabPrefixes.length; i++) {
 			if (command.startsWith(blockedTabPrefixes[i])) {
@@ -48,7 +48,7 @@ public class TabCompletionTrap {
 		}
 		return true;
 	}
-	
+
 	public void disable() {
 		ProtocolLibrary.getProtocolManager().removePacketListeners(base);
 	}

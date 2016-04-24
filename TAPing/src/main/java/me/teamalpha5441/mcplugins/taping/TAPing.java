@@ -19,23 +19,23 @@ public class TAPing extends JavaPlugin implements Listener {
 	private ArrayList<String> _MOTDs;
 
 	@Override
-	public void onLoad() {	
+	public void onLoad() {
 		saveDefaultConfig();
 	}
 
 	@Override
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(this, this);
-		
-		_MOTDs = loadMOTDs();
-		_Icons = loadIcons();
+
+		this._MOTDs = loadMOTDs();
+		this._Icons = loadIcons();
 	}
-	
+
 	private ArrayList<String> loadMOTDs() {
 		List<String> motds = getConfig().getStringList("motds");
 		if (motds != null) {
 			if (motds.size() > 0) {
-				ArrayList<String> cMotds = new ArrayList<String>(); 
+				ArrayList<String> cMotds = new ArrayList<String>();
 				for (String motd : motds) {
 					String cMotd = TextHelper.translateColorCodes(motd);
 					cMotds.add(cMotd);
@@ -47,7 +47,7 @@ public class TAPing extends JavaPlugin implements Listener {
 		getLogger().log(Level.WARNING, "No MOTDs loaded");
 		return null;
 	}
-	
+
 	private ArrayList<CachedServerIcon> loadIcons() {
 		File pluginDir = getDataFolder();
 		List<String> iconFileNames = getConfig().getStringList("icons");
@@ -74,17 +74,17 @@ public class TAPing extends JavaPlugin implements Listener {
 		getLogger().log(Level.WARNING, "No icons loaded");
 		return null;
 	}
-	
+
 	@EventHandler
 	public void onServerListPing(ServerListPingEvent evt) {
-		if (_MOTDs != null) {
-			int randomIndex = _Random.nextInt(_MOTDs.size());
-			String motd = _MOTDs.get(randomIndex);
+		if (this._MOTDs != null) {
+			int randomIndex = _Random.nextInt(this._MOTDs.size());
+			String motd = this._MOTDs.get(randomIndex);
 			evt.setMotd(motd);
 		}
-		if (_Icons != null) {
-			int randomIndex = _Random.nextInt(_Icons.size());
-			CachedServerIcon icon = _Icons.get(randomIndex);
+		if (this._Icons != null) {
+			int randomIndex = _Random.nextInt(this._Icons.size());
+			CachedServerIcon icon = this._Icons.get(randomIndex);
 			evt.setServerIcon(icon);
 		}
 	}

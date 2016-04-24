@@ -13,11 +13,11 @@ import me.teamalpha5441.mcplugins.users.backend.Helper;
 public class HomeCommand implements CommandExecutor {
 
 	private final Backend backend;
-	
+
 	public HomeCommand(Backend backend) {
 		this.backend = backend;
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (sender instanceof Player) {

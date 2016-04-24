@@ -9,11 +9,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class TADB extends JavaPlugin {
 
 	DatabaseManager databaseManager;
-	
+
 	@Override
 	public void onLoad() {
 		saveDefaultConfig();
-		
+
 		try {
 			this.databaseManager = new DatabaseManager(getConfig(), getLogger());
 			getServer().getServicesManager().register(DatabaseManager.class, this.databaseManager, this, ServicePriority.Normal);
@@ -22,7 +22,7 @@ public class TADB extends JavaPlugin {
 			getLogger().log(Level.SEVERE, "Database test failed", ex);
 		}
 	}
-	
+
 	@Override
 	public void onEnable() {
 		if (this.databaseManager != null) {
@@ -31,7 +31,7 @@ public class TADB extends JavaPlugin {
 			getServer().getPluginManager().disablePlugin(this);
 		}
 	}
-	
+
 	@Override
 	public void onDisable() {
 		if (this.databaseManager != null) {

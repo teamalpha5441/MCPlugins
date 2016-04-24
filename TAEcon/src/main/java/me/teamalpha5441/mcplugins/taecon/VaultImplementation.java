@@ -9,9 +9,9 @@ import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;
 
 public class VaultImplementation implements net.milkbowl.vault.economy.Economy {
-	
-    private TAEcon plugin = null;
-    
+
+	private TAEcon plugin = null;
+
 	public VaultImplementation(TAEcon plugin){
 		this.plugin = plugin;
 	}
@@ -82,7 +82,7 @@ public class VaultImplementation implements net.milkbowl.vault.economy.Economy {
 	public EconomyResponse deleteBank(String name) {
 		return new EconomyResponse(0, 0, ResponseType.NOT_IMPLEMENTED, "TAEcon does not support banks");
 	}
-	
+
 	@Override
 	@Deprecated
 	public EconomyResponse depositPlayer(String playerName, double amount) {
@@ -95,7 +95,7 @@ public class VaultImplementation implements net.milkbowl.vault.economy.Economy {
 		ResponseType rt;
 		String message;
 		int iamount = (int)Math.floor(amount);
-	
+
 		if (plugin.addBalance(player, iamount)) {
 			rt = ResponseType.SUCCESS;
 			message = null;
@@ -103,7 +103,7 @@ public class VaultImplementation implements net.milkbowl.vault.economy.Economy {
 			rt = ResponseType.SUCCESS;
 			message = "ERROR";
 		}
-	
+
 		return new EconomyResponse(iamount, getBalance(player), rt, message);
 	}
 
@@ -236,7 +236,7 @@ public class VaultImplementation implements net.milkbowl.vault.economy.Economy {
 	public boolean isEnabled() {
 		return plugin.isEnabled();
 	}
-	
+
 	@Override
 	@Deprecated
 	public EconomyResponse withdrawPlayer(String playerName, double amount) {
@@ -249,7 +249,7 @@ public class VaultImplementation implements net.milkbowl.vault.economy.Economy {
 		ResponseType rt;
 		String message;
 		int iamount = (int)Math.ceil(amount);
-		
+
 		if (has(player, amount)) {
 			if (plugin.removeBalance(player, iamount)) {
 				rt = ResponseType.SUCCESS;
@@ -262,7 +262,7 @@ public class VaultImplementation implements net.milkbowl.vault.economy.Economy {
 			rt = ResponseType.FAILURE;
 			message = "Not enough money";
 		}
-		
+
 		return new EconomyResponse(iamount, getBalance(player), rt, message);
 	}
 

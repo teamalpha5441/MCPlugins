@@ -11,11 +11,11 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class HideListener implements Listener {
 
 	private final HidePluginPart pluginPart;
-	
+
 	public HideListener(HidePluginPart pluginPart) {
 		this.pluginPart = pluginPart;
 	}
-	
+
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent evt) {
 		Player joiningPlayer = evt.getPlayer();

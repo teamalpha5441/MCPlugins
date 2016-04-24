@@ -19,14 +19,14 @@ public class TAKickMsg extends JavaPlugin implements Listener {
 	public void onLoad() {
 		saveDefaultConfig();
 	}
-	
+
 	@Override
 	public void onEnable() {
 		message = getConfig().getString("message", ChatColor.RED + "ERROR");
 		message = translateColorCodes(message);
 		getServer().getPluginManager().registerEvents(this, this);
 	}
-	
+
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerLogin(PlayerLoginEvent evt) {
 		if (evt.getPlayer().isOp()) {
@@ -38,7 +38,7 @@ public class TAKickMsg extends JavaPlugin implements Listener {
 			evt.disallow(Result.KICK_OTHER, message);
 		}
 	}
-	
+
 	public static String translateColorCodes(String string) {
 		string = Pattern.compile("(?i)&([0-9A-F])").matcher(string).replaceAll("\u00A7$1");
 		string = Pattern.compile("(?i)&([K])").matcher(string).replaceAll("\u00A7$1");
