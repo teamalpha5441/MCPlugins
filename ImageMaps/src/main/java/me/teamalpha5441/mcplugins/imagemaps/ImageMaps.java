@@ -69,7 +69,7 @@ public class ImageMaps extends JavaPlugin implements Listener {
 
 		// maybe use createSection(..)? performance?
 		String cfgBase = "images." + firstMap.getId();
-		getConfig().set(cfgBase + ".url", loadedImage.getImageUrl().toString());
+		getConfig().set(cfgBase + ".src", loadedImage.getImageSource());
 		getConfig().set(cfgBase + ".w", loadedImage.getMapCountX());
 		getConfig().set(cfgBase + ".h", loadedImage.getMapCountY());
 		saveConfig();

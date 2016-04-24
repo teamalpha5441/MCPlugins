@@ -1,16 +1,15 @@
 package me.teamalpha5441.mcplugins.imagemaps.loader;
 
 import java.awt.image.BufferedImage;
-import java.net.URL;
 
 public class LoadedImage {
 	private BufferedImage[] images;
-	private URL imageUrl;
+	private String imageSource;
 	private int mapCountX, mapCountY;
 
-	public LoadedImage(BufferedImage[] images, URL imageUrl, int mapCountX, int mapCountY) {
+	public LoadedImage(BufferedImage[] images, String imageSource, int mapCountX, int mapCountY) {
 		this.images = images;
-		this.imageUrl = imageUrl;
+		this.imageSource = imageSource;
 		this.mapCountX = mapCountX;
 		this.mapCountY = mapCountY;
 	}
@@ -19,8 +18,8 @@ public class LoadedImage {
 		return this.images;
 	}
 
-	public URL getImageUrl() {
-		return this.imageUrl;
+	public String getImageSource() {
+		return this.imageSource;
 	}
 
 	public int getMapCountX() {

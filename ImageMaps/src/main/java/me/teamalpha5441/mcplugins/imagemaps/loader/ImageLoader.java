@@ -60,6 +60,6 @@ public class ImageLoader {
 			}
 		}
 
-		return new LoadedImage(imageParts, imageUrl, mapCountX, mapCountY);
+		return new LoadedImage(imageParts, imageUrl.toString(), mapCountX, mapCountY);
 	}
 }
