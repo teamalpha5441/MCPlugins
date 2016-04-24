@@ -11,12 +11,12 @@ public class ImageRenderer extends MapRenderer {
 
 	private BufferedImage image;
 	private boolean rendered;
-	
+
 	public ImageRenderer(BufferedImage image) {
 		this.image = image;
 		this.rendered = false;
 	}
-	
+
 	@Override
 	public void render(MapView map, MapCanvas canvas, Player player) {
 		if (!this.rendered) {
