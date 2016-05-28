@@ -25,8 +25,8 @@ public class HomeCommand implements CommandExecutor {
 			if (args.length == 0) {
 				try {
 					String homeString = (String)backend.usersGetField(player, Backend.FIELD_USERS_HOME_LOCATION);
-					Location home = Helper.locationFromString(homeString);
-					if (home != null) {
+					if (homeString != null) {
+						Location home = Helper.locationFromString(homeString);
 						player.teleport(home);
 					} else {
 						sender.sendMessage(Constants.MSG_NO_HOME_SET);
