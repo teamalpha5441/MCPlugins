@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.teamalpha5441.mcplugins.taping</groupId>
   <artifactId>TAPing</artifactId>
-  <version>0.1.1-SNAPSHOT</version>
+  <version>0.1.2-SNAPSHOT</version>
   <name>TAPing</name>
   <description>Allows you to customize the servers ping response</description>
   <properties>

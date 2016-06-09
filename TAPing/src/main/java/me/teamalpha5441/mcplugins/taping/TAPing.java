@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 
+import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerListPingEvent;
@@ -37,8 +38,7 @@ public class TAPing extends JavaPlugin implements Listener {
 			if (motds.size() > 0) {
 				ArrayList<String> cMotds = new ArrayList<String>();
 				for (String motd : motds) {
-					String cMotd = TextHelper.translateColorCodes(motd);
-					cMotds.add(cMotd);
+					cMotds.add(ChatColor.translateAlternateColorCodes('&', motd));
 				}
 				getLogger().log(Level.INFO, "Loaded " + cMotds.size() + " MOTDs");
 				return cMotds;
